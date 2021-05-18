@@ -2,9 +2,9 @@ import * as express from 'express';
 import {Ingredient} from '../models/Ingredient';
 
 
-export const deleteIngredient = express.Router();
+export const deleteRouter = express.Router();
 
-deleteIngredient.delete('./Ingredient', async (req, res) => {
+deleteRouter.delete('./Ingredient', async (req, res) => {
     if(!req.query.name) {
         return res.status(400).send({
             error: 'A name must be provided',
@@ -25,7 +25,7 @@ deleteIngredient.delete('./Ingredient', async (req, res) => {
     }
 });
 
-deleteIngredient.delete('/ingredients/:id', async (req, res) => {
+deleteRouter.delete('/ingredients/:id', async (req, res) => {
     try {
         const ingredient = await Ingredient.findByIdAndDelete(req.params.id);
         
