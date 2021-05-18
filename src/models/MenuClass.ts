@@ -1,5 +1,5 @@
-import {typeDish, Dish} from './Dish';
-import {typeIngredient} from './Ingredient';
+import {typeDish, Dish} from './DishClass';
+import {typeIngredient} from './IngredientClass';
 
 /**
  * Class that states the elements that form a menu

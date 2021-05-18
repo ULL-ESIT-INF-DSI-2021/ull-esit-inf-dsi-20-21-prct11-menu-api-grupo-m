@@ -1,6 +1,6 @@
 import {Document, Schema, model} from 'mongoose';
 
-interface IngredientInterface extends Document {
+export interface IngredientInterface extends Document {
     name: string,
     origin: string,
     group: 'group1' | 'group2' | 'group3' | 'group4' | 'group5',
@@ -11,7 +11,7 @@ interface IngredientInterface extends Document {
     price: number
 }
 
-const IngredientSchema = new Schema({
+export const IngredientSchema = new Schema({
     name: {
         type: String,
         unique: true,
@@ -19,13 +19,44 @@ const IngredientSchema = new Schema({
         trim: true,
         validate: (value: string) => {
             if (!value.match(/^[A-Z]/)) {
-              throw new Error('Note title must start with a capital letter');
+              throw new Error('Ingredient title must start with a capital letter');
             }
-            else if ((!value.match(/[A-Za-z]/) || (!value.match(/\s/)) {
-                throw new Error('Note title must have only letters or spaces.');
+            else if ((!value.match(/[A-Za-z]/)) || (!value.match(/\s/))) {
+                throw new Error('Ingredient title must have only letters or spaces.');
             }
+        },
+    },
+    origin: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    group: {
+        type: String,
+        trim: true,
+        default: 'group1',
+        enum: ['group1', 'group2', 'group3', 'group4' ,'group5'],
+    },
+    lipids: {
+        type: Number,
+        required: true,
+    },
+    carbohydrates: {
+        type: Number,
+        required: true,
+    },
+    proteins: {
+        type: Number,
+        required: true,
+    },
+    kcalories: {
+        type: Number,
+        required: true,
+    },
+    price: {
+        type: Number,
+        required: true,
+    },
+});
 
-            !value.match(/^[A-Z]/)
-            !validator.isAlphanumeric(value)
-    }
-})
+export const Ingredient = model<IngredientInterface>('Ingredient', IngredientSchema);

@@ -1,4 +1,4 @@
-import {Ingredient, typeIngredient} from './Ingredient';
+import {Ingredient, typeIngredient} from './IngredientClass';
 export enum typeDish {starter, first, second, dessert};
 /**
  * Class that points out the characteristics of each dish
