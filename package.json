@@ -2,11 +2,11 @@
   "name": "ull-esit-inf-dsi-20-21-prct11-menu-api-grupo-m",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "dist/server.js",
   "scripts": {
     "heroku-postbuild": "tsc",
     "start": "node dist/index.js",
-    "dev": "tsc-watch --onSuccess \"node dist/index.js\""
+    "dev": "tsc-watch --onSuccess \"node dist/server.js\""
   },
   "engines": {
     "node": "16.x"

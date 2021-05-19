@@ -10,7 +10,6 @@ export type MacroNutrient = [string, number];
  * Class that points out the characteristics of each ingredient
  */
 export class Ingredient {
-    private macroNutrient: MacroNutrient[];
     /**
      * Constructor of the class
      * @param name Name of the ingredient
@@ -34,11 +33,7 @@ export class Ingredient {
         private proteins: number,
         private kcalories: number,
         private price: number,
-    ) {
-        this.macroNutrient = [["lipids", lipids],
-        ["carbohydrates", carbohydrates],
-        ["protein", proteins]];
-    }
+    ) {}
     /**
     * Method that returns the ingredient group
     */
