@@ -10,10 +10,7 @@ exports.IngredientSchema = new mongoose_1.Schema({
         trim: true,
         validate: (value) => {
             if (!value.match(/^[A-Z]/)) {
-                throw new Error('Ingredient title must start with a capital letter');
-            }
-            else if ((!value.match(/[A-Za-z]/)) || (!value.match(/\s/))) {
-                throw new Error('Ingredient title must have only letters or spaces.');
+                throw new Error('Ingredient name must start with a capital letter');
             }
         },
     },

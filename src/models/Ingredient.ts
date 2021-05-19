@@ -8,7 +8,7 @@ export interface IngredientInterface extends Document {
     carbohydrates: number,
     proteins: number,
     kcalories: number,
-    price: number
+    price: number,
 }
 
 export const IngredientSchema = new Schema({
@@ -19,10 +19,7 @@ export const IngredientSchema = new Schema({
         trim: true,
         validate: (value: string) => {
             if (!value.match(/^[A-Z]/)) {
-              throw new Error('Ingredient title must start with a capital letter');
-            }
-            else if ((!value.match(/[A-Za-z]/)) || (!value.match(/\s/))) {
-                throw new Error('Ingredient title must have only letters or spaces.');
+              throw new Error('Ingredient name must start with a capital letter');
             }
         },
     },
@@ -33,6 +30,7 @@ export const IngredientSchema = new Schema({
     },
     group: {
         type: String,
+        required: true,
         trim: true,
         default: 'group1',
         enum: ['group1', 'group2', 'group3', 'group4' ,'group5'],
