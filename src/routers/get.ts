@@ -1,6 +1,6 @@
 import * as express from 'express';
 import {Ingredient} from '../models/Ingredient';
-import {Dish} from '../models/Dish';
+// import {Dish} from '../models/Dish';
 
 export const getRouter = express.Router();
 
@@ -38,6 +38,7 @@ getRouter.get('/ingredients/:id', async (req, res) => {
 /**
  * Dishes Get Router
  */
+/*
 getRouter.get('/courses', async (req, res) => {
     const filter = req.query.name?{name: req.query.name.toString()}:{};
 
@@ -67,3 +68,4 @@ getRouter.get('/courses/:id', async (req, res) => {
     }
 });
 
+*/

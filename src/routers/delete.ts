@@ -1,6 +1,6 @@
 import * as express from 'express';
 import {Ingredient} from '../models/Ingredient';
-import {Dish} from '../models/Dish';
+// import {Dish} from '../models/Dish';
 
 export const deleteRouter = express.Router();
 
@@ -44,7 +44,7 @@ deleteRouter.delete('/ingredients/:id', async (req, res) => {
 /**
  * Dishes Delete Router
  */
-
+/*
  deleteRouter.delete('./courses', async (req, res) => {
     if(!req.query.name) {
         return res.status(400).send({
@@ -78,3 +78,4 @@ deleteRouter.delete('/courses/:id', async (req, res) => {
         return res.status(400).send();
     }
 });
+*/

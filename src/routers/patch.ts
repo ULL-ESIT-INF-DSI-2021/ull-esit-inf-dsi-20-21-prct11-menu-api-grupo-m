@@ -1,9 +1,12 @@
 import * as express from 'express';
 import {Ingredient} from '../models/Ingredient';
-import {Dish} from '../models/Dish';
+//import {Dish} from '../models/Dish';
 
 export const patchRouter = express.Router();
 
+/**
+ * Patch Ingredient Router
+ */
 patchRouter.patch('/ingredients', async (req, res) => {
     if (!req.query.name) {
         return res.status(400).send({
@@ -74,8 +77,10 @@ patchRouter.patch('./ingredient:id', async (req, res) => {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-patchRouter.patch('/courses', async (req, res) => {
+/**
+ * Patch Dishes Router
+ */
+/*patchRouter.patch('/courses', async (req, res) => {
     if (!req.query.name) {
         return res.status(400).send({
             error: 'A name must be provided',
@@ -138,3 +143,4 @@ patchRouter.patch('./courses:id', async (req, res) => {
         return res.status(400).send();
     }
 });
+*/
