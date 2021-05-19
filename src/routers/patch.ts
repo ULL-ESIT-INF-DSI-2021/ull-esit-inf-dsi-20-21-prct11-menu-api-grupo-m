@@ -133,7 +133,6 @@ patchRouter.patch('./courses:id', async (req, res) => {
         if(!dish) {
             return res.status(404).send();
         }
-
         return res.send(dish);
     } catch (error) {
         return res.status(400).send();

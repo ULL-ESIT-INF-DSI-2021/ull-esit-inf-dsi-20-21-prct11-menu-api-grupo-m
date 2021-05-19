@@ -3,3 +3,4 @@ password: nutritionappDSI
 
 mongodb+srv://nutrition-app:nutritionappDSI@cluster0.y08gf.mongodb.net/nutrition-app?retryWrites=true&w=majority
 
+heroku aplicacion: group-m-nutrition-app

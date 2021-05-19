@@ -1,9 +1,10 @@
 import * as express from 'express';
 import {Ingredient} from '../models/Ingredient';
+import {Dish} from '../models/Dish';
 
 export const postRouter = express.Router();
 
-postRouter.post('ingredients', async (req, res) => {
+postRouter.post('/ingredients', async (req, res) => {
     const ingredient = new Ingredient(req.body);
 
     try {
@@ -13,3 +14,18 @@ postRouter.post('ingredients', async (req, res) => {
         res.status(400).send(error);
     }
 });
+
+
+/////////////////////////////////////////////////////////////////
+
+postRouter.post('/courses', async (req, res) => {
+    const dish = new Dish(req.body);
+
+    try {
+        await dish.save();
+        res.status(201).send(dish);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+});
+
