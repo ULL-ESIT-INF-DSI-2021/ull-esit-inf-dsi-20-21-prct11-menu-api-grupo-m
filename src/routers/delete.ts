@@ -1,9 +1,11 @@
 import * as express from 'express';
 import {Ingredient} from '../models/Ingredient';
 
-
 export const deleteRouter = express.Router();
 
+/**
+ * Ingredients Delete Router
+ */
 deleteRouter.delete('./Ingredient', async (req, res) => {
     if(!req.query.name) {
         return res.status(400).send({
@@ -37,3 +39,8 @@ deleteRouter.delete('/ingredients/:id', async (req, res) => {
         return res.status(400).send();
     }
 });
+
+/**
+ * Dishes Delete Router
+ */
+

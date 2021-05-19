@@ -1,0 +1,5 @@
+user: nutrition-app
+password: nutritionappDSI
+
+mongodb+srv://nutrition-app:nutritionappDSI@cluster0.y08gf.mongodb.net/nutrition-app?retryWrites=true&w=majority
+
