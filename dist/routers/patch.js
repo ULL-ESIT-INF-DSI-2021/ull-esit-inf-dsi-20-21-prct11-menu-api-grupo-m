@@ -22,8 +22,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.patchRouter = void 0;
 const express = __importStar(require("express"));
 const Ingredient_1 = require("../models/Ingredient");
-const Dish_1 = require("../models/Dish");
+//import {Dish} from '../models/Dish';
 exports.patchRouter = express.Router();
+/**
+ * Patch Ingredient Router
+ */
 exports.patchRouter.patch('/ingredients', async (req, res) => {
     if (!req.query.name) {
         return res.status(400).send({
@@ -82,59 +85,71 @@ exports.patchRouter.patch('./ingredient:id', async (req, res) => {
     }
 });
 ////////////////////////////////////////////////////////////////////////////////////////////////
-exports.patchRouter.patch('/courses', async (req, res) => {
+/**
+ * Patch Dishes Router
+ */
+/*patchRouter.patch('/courses', async (req, res) => {
     if (!req.query.name) {
         return res.status(400).send({
             error: 'A name must be provided',
         });
     }
+
     const allowedUpdates = ['name', 'type', 'ingredients',
-        'predominantGroup', 'nutritionalValue', 'price'];
+    'predominantGroup', 'nutritionalValue', 'price'];
     const actualUpdates = Object.keys(req.body);
-    const isValidUpdate = actualUpdates.every((update) => allowedUpdates.includes(update));
+    const isValidUpdate =
+      actualUpdates.every((update) => allowedUpdates.includes(update));
+
     if (!isValidUpdate) {
         return res.status(400).send({
             error: 'Update is not permitted.'
         });
     }
+
     try {
-        const dish = await Dish_1.Dish.findOneAndUpdate({
+        const dish = await Dish.findOneAndUpdate({
             name: req.query.name.toString()
         }, req.body, {
-            new: true,
-            runValidators: true,
+                new: true,
+                runValidators: true,
         });
+
         if (!dish) {
-            return res.status(404).send();
+             return res.status(404).send();
         }
+
         return res.send(dish);
-    }
-    catch (error) {
-        return res.status(400).send(error);
+    } catch (error) {
+        return res.status(400).send(error)
     }
 });
-exports.patchRouter.patch('./courses:id', async (req, res) => {
+
+patchRouter.patch('./courses:id', async (req, res) => {
     const allowedUpdates = ['name', 'type', 'ingredients',
-        'predominantGroup', 'nutritionalValue', 'price'];
+    'predominantGroup', 'nutritionalValue', 'price'];
     const actualUpdates = Object.keys(req.body);
-    const isValidUpdate = actualUpdates.every((update) => allowedUpdates.includes(update));
-    if (!isValidUpdate) {
+    const isValidUpdate =
+        actualUpdates.every((update) => allowedUpdates.includes(update));
+
+    if(!isValidUpdate) {
         return res.status(400).send({
             error: 'Update is not permitted',
-        });
+        })
     }
+
     try {
-        const dish = await Dish_1.Dish.findByIdAndUpdate(req.params.id, req.body, {
+        const dish = await Dish.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
             runValidators: true
         });
-        if (!dish) {
+        if(!dish) {
             return res.status(404).send();
         }
         return res.send(dish);
-    }
-    catch (error) {
+    } catch (error) {
         return res.status(400).send();
     }
 });
+*/ 
 //# sourceMappingURL=patch.js.map

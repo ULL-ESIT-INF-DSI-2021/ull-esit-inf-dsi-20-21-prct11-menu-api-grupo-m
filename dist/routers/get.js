@@ -22,7 +22,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getRouter = void 0;
 const express = __importStar(require("express"));
 const Ingredient_1 = require("../models/Ingredient");
-const Dish_1 = require("../models/Dish");
+// import {Dish} from '../models/Dish';
 exports.getRouter = express.Router();
 /**
  * Ingredients Get Router
@@ -55,29 +55,35 @@ exports.getRouter.get('/ingredients/:id', async (req, res) => {
 /**
  * Dishes Get Router
  */
-exports.getRouter.get('/courses', async (req, res) => {
-    const filter = req.query.name ? { name: req.query.name.toString() } : {};
+/*
+getRouter.get('/courses', async (req, res) => {
+    const filter = req.query.name?{name: req.query.name.toString()}:{};
+
     try {
-        const dishes = await Dish_1.Dish.find(filter);
+        const dishes = await Dish.find(filter);
+
         if (dishes.length !== 0) {
             return res.send(dishes);
         }
         return res.status(404).send();
-    }
-    catch (error) {
+    } catch (error) {
         return res.status(500).send();
     }
 });
-exports.getRouter.get('/courses/:id', async (req, res) => {
+
+
+getRouter.get('/courses/:id', async (req, res) => {
     try {
-        const dishes = await Dish_1.Dish.findById(req.params.id);
-        if (!dishes) {
+        const dishes = await Dish.findById(req.params.id);
+
+        if(!dishes) {
             return res.status(404).send();
         }
         return res.send(dishes);
-    }
-    catch (error) {
+    } catch(error) {
         return res.status(500).send(0);
     }
 });
+
+*/ 
 //# sourceMappingURL=get.js.map

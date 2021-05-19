@@ -22,8 +22,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.postRouter = void 0;
 const express = __importStar(require("express"));
 const Ingredient_1 = require("../models/Ingredient");
-const Dish_1 = require("../models/Dish");
+// import {Dish} from '../models/Dish';
 exports.postRouter = express.Router();
+/**
+ * Post Ingredient Router
+ */
 exports.postRouter.post('/ingredients', async (req, res) => {
     const ingredient = new Ingredient_1.Ingredient(req.body);
     try {
@@ -35,14 +38,18 @@ exports.postRouter.post('/ingredients', async (req, res) => {
     }
 });
 /////////////////////////////////////////////////////////////////
-exports.postRouter.post('/courses', async (req, res) => {
-    const dish = new Dish_1.Dish(req.body);
+/**
+ * Post Dishes Router
+ */
+/*postRouter.post('/courses', async (req, res) => {
+    const dish = new Dish(req.body);
+
     try {
         await dish.save();
         res.status(201).send(dish);
-    }
-    catch (error) {
+    } catch (error) {
         res.status(400).send(error);
     }
 });
+*/
 //# sourceMappingURL=post.js.map

@@ -22,6 +22,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.defaultRouter = void 0;
 const express = __importStar(require("express"));
 exports.defaultRouter = express.Router();
+/**
+ * Default Router
+ */
 exports.defaultRouter.all('*', (_, res) => {
     res.status(501).send();
 });
