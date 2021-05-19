@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
-// mongodb+srv://nutrition-app:nutritionappDSI@cluster0.y08gf.mongodb.net/nutrition-app?retryWrites=true&w=majority
 const mongodb_url = process.env.MONGODB_URL || 'mongodb://localhost:27017/nutrition-app';
 mongoose_1.connect(mongodb_url, {
     useNewUrlParser: true,

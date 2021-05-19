@@ -21,6 +21,7 @@ exports.IngredientSchema = new mongoose_1.Schema({
     },
     group: {
         type: String,
+        required: true,
         trim: true,
         default: 'group1',
         enum: ['group1', 'group2', 'group3', 'group4', 'group5'],
