@@ -9,7 +9,7 @@
     "dev": "tsc-watch --onSuccess \"node dist/server.js\""
   },
   "engines": {
-    "node": "16.x"
+    "node": "15.x"
   },
   "repository": {
     "type": "git",
