@@ -27,9 +27,10 @@ postRouter.post('/courses', async (req, res) => {
 
     const { name, type, ingredients, quantity } = req.body;
     const arrayIngredients: IngredientInterface[] = [];
+    let ingredient;
     for(let i=0; i<ingredients.length; i++){
         let filter = ingredients[i]?{name: ingredients[i].toString()}:{};
-        let ingredient = await Ingredient.findOne(filter);
+        ingredient = await Ingredient.findOne(filter);
         if (!(ingredient  === null)) {
             arrayIngredients.push(ingredient);
         }
@@ -40,7 +41,7 @@ postRouter.post('/courses', async (req, res) => {
         "type": type,
         "ingredients": arrayIngredients,
         "quantity": quantity
-    })
+    });
 
     try {
         await dish.save();

@@ -44,9 +44,10 @@ exports.postRouter.post('/ingredients', async (req, res) => {
 exports.postRouter.post('/courses', async (req, res) => {
     const { name, type, ingredients, quantity } = req.body;
     const arrayIngredients = [];
+    let ingredient;
     for (let i = 0; i < ingredients.length; i++) {
         let filter = ingredients[i] ? { name: ingredients[i].toString() } : {};
-        let ingredient = await Ingredient_1.Ingredient.findOne(filter);
+        ingredient = await Ingredient_1.Ingredient.findOne(filter);
         if (!(ingredient === null)) {
             arrayIngredients.push(ingredient);
         }

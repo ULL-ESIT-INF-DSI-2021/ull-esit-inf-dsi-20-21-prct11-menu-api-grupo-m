@@ -27,7 +27,7 @@ exports.deleteRouter = express.Router();
 /**
  * Ingredients Delete Router
  */
-exports.deleteRouter.delete('./ingredients', async (req, res) => {
+exports.deleteRouter.delete('/ingredients', async (req, res) => {
     if (!req.query.name) {
         return res.status(400).send({
             error: 'A name must be provided',
