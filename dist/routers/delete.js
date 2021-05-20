@@ -22,7 +22,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteRouter = void 0;
 const express = __importStar(require("express"));
 const Ingredient_1 = require("../models/Ingredient");
-// import {Dish} from '../models/Dish';
+const Dish_1 = require("../models/Dish");
 exports.deleteRouter = express.Router();
 /**
  * Ingredients Delete Router
@@ -61,39 +61,35 @@ exports.deleteRouter.delete('/ingredients/:id', async (req, res) => {
 /**
  * Dishes Delete Router
  */
-/*
- deleteRouter.delete('./courses', async (req, res) => {
-    if(!req.query.name) {
+exports.deleteRouter.delete('/courses', async (req, res) => {
+    if (!req.query.name) {
         return res.status(400).send({
             error: 'A name must be provided',
         });
     }
-
     try {
-        const dish = await Dish.findOneAndDelete({
+        const dish = await Dish_1.Dish.findOneAndDelete({
             name: req.query.name.toString()
         });
-
-        if(!dish) {
+        if (!dish) {
             return res.status(404).send();
         }
         return res.send(dish);
-    } catch (error) {
+    }
+    catch (error) {
         return res.status(400).send();
     }
 });
-
-deleteRouter.delete('/courses/:id', async (req, res) => {
+exports.deleteRouter.delete('/courses/:id', async (req, res) => {
     try {
-        const dish = await Dish.findByIdAndDelete(req.params.id);
-        
-        if(!dish) {
+        const dish = await Dish_1.Dish.findByIdAndDelete(req.params.id);
+        if (!dish) {
             return res.status(404).send();
         }
         return res.send(dish);
-    } catch (error) {
+    }
+    catch (error) {
         return res.status(400).send();
     }
 });
-*/ 
 //# sourceMappingURL=delete.js.map
