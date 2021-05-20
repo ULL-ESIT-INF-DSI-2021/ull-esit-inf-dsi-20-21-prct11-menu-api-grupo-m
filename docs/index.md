@@ -1,4 +1,4 @@
-# Práctica 7. Modelo de Datos de un Sistema que Permite el Diseño de Menús
+# Práctica 8. API Node/Express de gestión de información nutricionalTarea
 
 ## Grupo M
 
@@ -55,9 +55,9 @@ Hemos incluido un objeto de tipo ingrediente o alimento, como lo queramos llamar
 
 *En la clase que representará cada alimento o ingrediente, llamada Ingredient, hemos definido una serie de atributos y métodos para poder implementar las características que se nos describen en el enunciado.*
 
-*Para empazar definimos dos elementos, un tipo y un enumerable, que vamos a necesitar a la hora de desarrollar la clase, y que representan los grupos a los que puede pertenecer un ingrediente (en el caso del enumerable) y una tupla  que representará un macro nutriente (compuesta por el string de su nombre y su cantidad) y que añadiremos como atributo de la clase.*
+*Tenemos dos elementos, un tipo y un enumerable, y que representan los grupos a los que puede pertenecer un ingrediente (en el caso del enumerable) y una tupla  que representa un macro nutriente (compuesta por el string de su nombre y su cantidad) y que añadiremos como atributo de la clase.*
 
-*A parte de éste, como atributos de la clase definidos en el constructor a su vez tendremos los strings `name` (que representa el nombre del ingrediente) y `origin` (que representa el origen del mismo, de dónde viene o dónde ha sido producido), los tipo number `lipids`, `carbohydrates` y `proteins` (que representan los valores de los distintos macronutrientes que después al almacenaremos junto con su nombre en la tupla macronutrient) y los tipo number `kcalories` (número de calorías por 100g) y `price` (precio por kg)*
+*A parte de éste, como atributos de la clase definidos en el constructor a su vez tenemos los strings `name` (que representa el nombre del ingrediente) y `origin` (que representa el origen del mismo, de dónde viene o dónde ha sido producido), los tipo number `lipids`, `carbohydrates` y `proteins` (que representan los valores de los distintos macronutrientes que después al almacenaremos junto con su nombre en la tupla macronutrient) y los tipo number `kcalories` (número de calorías por 100g) y `price` (precio por kg)*
 
 *Asimismo, los métodos que hemos definido para esta clase son `getGroup()`, `getPrice()` y `printIngredient()`, que nos devuelven el valor de los atributos `group`, `price` y nos imprimen por pantalla todos los atributos del ingrediente respectivamente.*
 
@@ -208,7 +208,8 @@ export const Ingredient = model<IngredientInterface>('Ingredient', IngredientSch
 
 ### Clase comanda
 
-
+```
+```
 
 ## MongoDB y Monguss
 
