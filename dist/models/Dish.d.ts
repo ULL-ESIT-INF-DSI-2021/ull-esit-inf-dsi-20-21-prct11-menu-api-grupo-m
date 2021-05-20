@@ -3,7 +3,8 @@ import { IngredientInterface } from './Ingredient';
 export interface DishInterface extends Document {
     name: string;
     type: 'starter' | 'first' | 'second' | 'dessert';
-    ingredients: [IngredientInterface, number][];
+    ingredients: IngredientInterface[];
+    quantity: number[];
     predominantGroup: 'group1' | 'group2' | 'group3' | 'group4' | 'group5';
     nutritionalValue: number;
     price: number;

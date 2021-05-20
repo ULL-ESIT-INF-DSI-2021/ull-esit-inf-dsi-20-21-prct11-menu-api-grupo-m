@@ -1,6 +1,6 @@
 import * as express from 'express';
-import {Ingredient} from '../models/Ingredient';
-// import {Dish} from '../models/Dish';
+import {Ingredient, IngredientInterface} from '../models/Ingredient';
+import {Dish} from '../models/Dish';
 
 export const postRouter = express.Router();
 
@@ -23,8 +23,24 @@ postRouter.post('/ingredients', async (req, res) => {
 /**
  * Post Dishes Router
  */
-/*postRouter.post('/courses', async (req, res) => {
-    const dish = new Dish(req.body);
+postRouter.post('/courses', async (req, res) => {
+
+    const { name, type, ingredients, quantity } = req.body;
+    const arrayIngredients: IngredientInterface[] = [];
+    for(let i=0; i<ingredients.length; i++){
+        let filter = ingredients[i]?{name: ingredients[i].toString()}:{};
+        let ingredient = await Ingredient.findOne(filter);
+        if (!(ingredient  === null)) {
+            arrayIngredients.push(ingredient);
+        }
+    }
+
+    const dish = new Dish({
+        "name": name,
+        "type": type,
+        "ingredients": arrayIngredients,
+        "quantity": quantity
+    })
 
     try {
         await dish.save();
@@ -33,4 +49,4 @@ postRouter.post('/ingredients', async (req, res) => {
         res.status(400).send(error);
     }
 });
-*/
+

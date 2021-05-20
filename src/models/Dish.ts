@@ -1,10 +1,11 @@
 import {Document, Schema, model} from 'mongoose';
-import {IngredientSchema, IngredientInterface} from './Ingredient';
+import {IngredientInterface} from './Ingredient';
 
 export interface DishInterface extends Document {
   name: string,
   type: 'starter' | 'first' | 'second' | 'dessert',
-  ingredients: [IngredientInterface, number][],
+  ingredients: IngredientInterface[],
+  quantity: number[],
   predominantGroup: 'group1' | 'group2' | 'group3' | 'group4' | 'group5',
   nutritionalValue: number,
   price: number,
@@ -32,24 +33,34 @@ export const DishSchema = new Schema({
       required: true,
       enum: ['starter', 'first', 'second', 'dessert'],
   },
-  ingredients: {
-    type: [[IngredientSchema, Number]],
-    required: true,
-  },
+  ingredients: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Ingredient',
+      unique: true,
+      required: true,
+    }
+  ],
+  quantity: [
+    {
+      type: Number,
+      required: true,
+    }
+  ],
   predominantGroup: {
     type: String,
     trim: true,
-    required: true,
+    required: false,
     default: 'group1',
     enum: ['group1', 'group2', 'group3', 'group4' ,'group5'],
   },
   nutritionalValue: {
     type: Number,
-    required: true,
+    required: false,
   },
   price: {
       type: Number,
-      required: true,
+      required: false,
   },
 });
 

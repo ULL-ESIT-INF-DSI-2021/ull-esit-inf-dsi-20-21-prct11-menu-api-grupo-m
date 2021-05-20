@@ -22,7 +22,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.postRouter = void 0;
 const express = __importStar(require("express"));
 const Ingredient_1 = require("../models/Ingredient");
-// import {Dish} from '../models/Dish';
+const Dish_1 = require("../models/Dish");
 exports.postRouter = express.Router();
 /**
  * Post Ingredient Router
@@ -41,15 +41,28 @@ exports.postRouter.post('/ingredients', async (req, res) => {
 /**
  * Post Dishes Router
  */
-/*postRouter.post('/courses', async (req, res) => {
-    const dish = new Dish(req.body);
-
+exports.postRouter.post('/courses', async (req, res) => {
+    const { name, type, ingredients, quantity } = req.body;
+    const arrayIngredients = [];
+    for (let i = 0; i < ingredients.length; i++) {
+        let filter = ingredients[i] ? { name: ingredients[i].toString() } : {};
+        let ingredient = await Ingredient_1.Ingredient.findOne(filter);
+        if (!(ingredient === null)) {
+            arrayIngredients.push(ingredient);
+        }
+    }
+    const dish = new Dish_1.Dish({
+        "name": name,
+        "type": type,
+        "ingredients": arrayIngredients,
+        "quantity": quantity
+    });
     try {
         await dish.save();
         res.status(201).send(dish);
-    } catch (error) {
+    }
+    catch (error) {
         res.status(400).send(error);
     }
 });
-*/
 //# sourceMappingURL=post.js.map
