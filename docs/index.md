@@ -13,7 +13,7 @@ Eduardo Pérez Suárez
 Xue Mei Lin
 
 
-## Repositorio de GitHub con el código fuente de la práctica:
+## Repositorio de GitHub con el código fuente de la práctica
 
 [https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct11-menu-api-grupo-m](https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct11-menu-api-grupo-m)
 
