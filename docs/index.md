@@ -22,7 +22,7 @@ Xue Mei Lin
 
 En esta práctica tendremos que desarrollar una API a basándonos en la anterior práctica grupal que hemos desarrollado. Las instrucciones de la tarea se encuentran en el siguiente recurso:
 
-https://ull-esit-inf-dsi-2021.github.io/prct07-menu-dataModel/
+https://ull-esit-inf-dsi-2021.github.io/prct11-menu-api/
 
 Sintetizando, tendremos que implementar una API, haciendo uso de Node/Express, que permita llevar a cabo operaciones de creación, lectura, modificación y borrado (Create, Read, Update, Delete - CRUD) de ingredientes, platos y menús.
 Los requisitos que se nos exigen en la práctica abarcan la existencia de un objeto Alimento/Ingrediente, un objeto Plato, un objeto Menú, un objeto Carta y un objeto Comanda, que ya implementamos en la práctica anterior. Estos objetos interactuarán entre sí y tendrán cada uno una serie de elementos internos, atributos o características que los componen. 
