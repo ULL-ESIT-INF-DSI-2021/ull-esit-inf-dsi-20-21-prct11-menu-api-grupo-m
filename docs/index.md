@@ -1,4 +1,4 @@
-# Práctica 11. API Node/Express de gestión de información nutricionalTarea
+# Práctica 11. API Node/Express de gestión de información nutricional
 
 ## Grupo M
 
@@ -96,33 +96,6 @@ En cuanto al objeto menú, este está compuesto por platos, incluyendo un plato 
 *Además, los metodos definidos para esta clase son: `getName()`, el cual nos devuelve el nombre o identificador del menu, `getDishes()`, que nos devuelve el array `dishesMenu` para poder ver los platos que forman el menu, `calculateTotalMoney()`, que calcula el valor total del menu, `getTotalMoney()`, que nos devuelve el atributo `priceMenu` para poder saber el valor antes de calculado, `calculateNutriValue()`, que nos calcula el valor nutricional total del menu, `getNutriValue()`, que nos devuelve el atributo `nutriValue` para poder saber el valor antes calcularlo, `setTypeMenu()`, donde se busca entre los platos que forman el menu el grupo de alimento predominante y se agrega a la lista, `getTypeMenu()`, que nos devuelve el atributo `typeMenu` para poder ver los grupos de alimentos a los que pertenece que definimos con aterioridad, `printMenu()`, que nos visualiza el menú, y por último, `addDish(newDish: Dish)` el cual nos da la posibilidad de agregar un nuevo plato al menu *
 
 
-### Clase carta
-
-El objeto carta se compondría de una serie de menús prediseñados. Además, en la carta se incluyen platos individuales para que los comensales diseñen sus propios menús. Los menús a diseñar por los clientes pueden tener todos los platos que deseen.
-
-*Para la clase carta tenemos que importar las clases menú (`menu`) y plato (`dish`), ya que la carta se compone de este tipo de elementos.*
-
-*La estructura de esta clase será bastante sencilla, pues tendremos dos atributos de tipo protected que representarán el identificador de la carta `name` y los elementos (menús y platos) que la conforman mediante el atributo `menuCarte` en forma de vector o lista.*
-
-*El cuanto a métodos tendremos simplemente tres: el `constructor` que nos asignará valor a los dos atributos de la clase, un método `displayCarte` que nos mostrará la carta y un método `addMenu` que servirá para que los clientes puedan crear su propio menú personalizado.*
-
-
-### Clase comanda
-
-Por último, deberá crear una clase Comanda que permita almacenar la comanda de un nuevo cliente de restaurante. Recuerde que la comanda de un cliente puede ser un menú predefinido o un menú personalizado con los platos que el cliente desee.
-
-Para el funcionamiento de la clase Comanda, también necesitará hacer uso de Inquirer.js. En concreto, un cliente podrá:
-
-Visualizar la carta del restaurante. Para cada menú y/o plato, el cliente querrá poder observar toda la información que tiene (precio, ingredientes, composición nutricional y grupos de alimentos).
-Realizar una comanda. Un cliente podrá realizar una comanda a partir de un menú preestablecido o bien solicitando un menú personalizado. En caso de solicitar un menú personalizado, se deberá proporcionar la opción de visualizar la carta completa del restaurante, seleccionar cualquier plato del sistema y en la cantidad que el cliente considere oportuna (siempre de manera entera, no una ración y media por ejemplo). Por último, considere que un cliente puede solicitar un menú personalizado a partir de un menú existente. Por ejemplo, eliminando o añadiendo distintos platos al menú.
-
-*Por último, tenemos la clase comanda, la cual la utilizamos para guardar los pedidos de los clientes*
-
-*En esta clase utilizamos los siguientes atributos: en `menuCommand` el cual es un vector de menús, se guardan los menus pedidos o los nuevos menís creados a partir de los platos y en `menuCard` está la carta completa, con todos los platos y menús*
-
-*Por ultimo, como únicos metodos tenemos el `constructor`, el cual va a separar los menús y crear los nuevos con los platos pedidos, y el `printCard()` el cual va a visualizar la carta completa, que es el atributo `menuCard` antes mencionado.*
-
-
 ## Explicación del código o implementación desarrollados
 
 ### Clase ingrediente/alimento
@@ -197,16 +170,6 @@ export const Ingredient = model<IngredientInterface>('Ingredient', IngredientSch
 ```
 
 ### Clase menú
-
-```
-```
-
-### Clase carta
-
-```
-```
-
-### Clase comanda
 
 ```
 ```
