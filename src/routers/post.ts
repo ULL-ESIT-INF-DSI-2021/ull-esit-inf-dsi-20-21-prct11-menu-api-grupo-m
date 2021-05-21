@@ -4,6 +4,7 @@ import {Dish, DishInterface} from '../models/Dish';
 import {Menu} from '../models/Menu';
 import {setPredominantGroup} from '../utils/dish/setPredominantGroup';
 import {setNutriValue} from '../utils/dish/setNutriValue';
+import {setPrice} from '../utils/dish/setPrice';
 
 export const postRouter = express.Router();
 
@@ -38,6 +39,7 @@ postRouter.post('/courses', async (req, res) => {
 
     const predominantGroup = setPredominantGroup(arrayIngredients);
     const nutriValue = setNutriValue(arrayIngredients);
+    const price = setPrice(arrayIngredients, quantity);
 
     const dish = new Dish({
         "name": name,
@@ -45,7 +47,8 @@ postRouter.post('/courses', async (req, res) => {
         "ingredients": arrayIngredients,
         "quantity": quantity,
         "predominantGroup": predominantGroup,
-        "nutritionalValue": nutriValue
+        "nutritionalValue": nutriValue,
+        "price": price
     });
 
     try {
