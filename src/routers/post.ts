@@ -3,6 +3,7 @@ import {Ingredient, IngredientInterface} from '../models/Ingredient';
 import {Dish, DishInterface} from '../models/Dish';
 import {Menu} from '../models/Menu';
 import {setPredominantGroup} from '../utils/dish/setPredominantGroup';
+import {setNutriValue} from '../utils/dish/setNutriValue';
 
 export const postRouter = express.Router();
 
@@ -36,13 +37,15 @@ postRouter.post('/courses', async (req, res) => {
     }
 
     const predominantGroup = setPredominantGroup(arrayIngredients);
+    const nutriValue = setNutriValue(arrayIngredients);
 
     const dish = new Dish({
         "name": name,
         "type": type,
         "ingredients": arrayIngredients,
         "quantity": quantity,
-        "predominantGroup": predominantGroup
+        "predominantGroup": predominantGroup,
+        "nutritionalValue": nutriValue
     });
 
     try {

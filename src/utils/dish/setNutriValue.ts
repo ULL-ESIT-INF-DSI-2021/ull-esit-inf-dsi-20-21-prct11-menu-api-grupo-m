@@ -1,5 +1,9 @@
-// import {IngredientInterface} from '../../models/Ingredient';
+import {IngredientInterface} from '../../models/Ingredient';
 
-/*function setNutriValue(ingredientList: IngredientInterface[]) {
-
-}*/
+export function setNutriValue(ingredientList: IngredientInterface[]): number {
+  let totalNutri: number = 0;
+  ingredientList.forEach((ingredient) => {
+    totalNutri += ingredient.lipids + ingredient.carbohydrates + ingredient.proteins + ingredient.kcalories;
+  });
+  return totalNutri;
+}
