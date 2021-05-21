@@ -1,6 +1,7 @@
 import * as express from 'express';
 import {Ingredient} from '../models/Ingredient';
 import {Dish} from '../models/Dish';
+import {Menu} from '../models/Menu';
 
 export const getRouter = express.Router();
 
@@ -27,11 +28,11 @@ getRouter.get('/ingredients/:id', async (req, res) => {
     try {
         const ingredient = await Ingredient.findById(req.params.id);
 
-        if(!ingredient) {
+        if (!ingredient) {
             return res.status(404).send();
         }
         return res.send(ingredient);
-    } catch(error) {
+    } catch (error) {
         return res.status(500).send(0);
     }
 });
@@ -60,11 +61,44 @@ getRouter.get('/courses/:id', async (req, res) => {
     try {
         const dishes = await Dish.findById(req.params.id);
 
-        if(!dishes) {
+        if (!dishes) {
             return res.status(404).send();
         }
         return res.send(dishes);
-    } catch(error) {
+    } catch (error) {
+        return res.status(500).send(0);
+    }
+});
+
+
+/**
+ * Menus Get Router
+ */
+getRouter.get('/menus', async (req, res) => {
+    const filter = req.query.name?{name: req.query.name.toString()}:{};
+
+    try {
+        const menu = await Menu.find(filter);
+
+        if (menu.length !== 0) {
+            return res.send(menu);
+        }
+        return res.status(404).send();
+    } catch (error) {
+        return res.status(500).send();
+    }
+});
+
+
+getRouter.get('/menus/:id', async (req, res) => {
+    try {
+        const menu = await Menu.findById(req.params.id);
+
+        if (!menu) {
+            return res.status(404).send();
+        }
+        return res.send(menu);
+    } catch (error) {
         return res.status(500).send(0);
     }
 });

@@ -23,6 +23,7 @@ exports.getRouter = void 0;
 const express = __importStar(require("express"));
 const Ingredient_1 = require("../models/Ingredient");
 const Dish_1 = require("../models/Dish");
+const Menu_1 = require("../models/Menu");
 exports.getRouter = express.Router();
 /**
  * Ingredients Get Router
@@ -75,6 +76,34 @@ exports.getRouter.get('/courses/:id', async (req, res) => {
             return res.status(404).send();
         }
         return res.send(dishes);
+    }
+    catch (error) {
+        return res.status(500).send(0);
+    }
+});
+/**
+ * Menus Get Router
+ */
+exports.getRouter.get('/menus', async (req, res) => {
+    const filter = req.query.name ? { name: req.query.name.toString() } : {};
+    try {
+        const menu = await Menu_1.Menu.find(filter);
+        if (menu.length !== 0) {
+            return res.send(menu);
+        }
+        return res.status(404).send();
+    }
+    catch (error) {
+        return res.status(500).send();
+    }
+});
+exports.getRouter.get('/menus/:id', async (req, res) => {
+    try {
+        const menu = await Menu_1.Menu.findById(req.params.id);
+        if (!menu) {
+            return res.status(404).send();
+        }
+        return res.send(menu);
     }
     catch (error) {
         return res.status(500).send(0);
