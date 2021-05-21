@@ -23,6 +23,8 @@ exports.postRouter = void 0;
 const express = __importStar(require("express"));
 const Ingredient_1 = require("../models/Ingredient");
 const Dish_1 = require("../models/Dish");
+const Menu_1 = require("../models/Menu");
+const setPredominantGroup_1 = require("../utils/dish/setPredominantGroup");
 exports.postRouter = express.Router();
 /**
  * Post Ingredient Router
@@ -37,7 +39,6 @@ exports.postRouter.post('/ingredients', async (req, res) => {
         res.status(400).send(error);
     }
 });
-/////////////////////////////////////////////////////////////////
 /**
  * Post Dishes Router
  */
@@ -46,21 +47,52 @@ exports.postRouter.post('/courses', async (req, res) => {
     const arrayIngredients = [];
     let ingredient;
     for (let i = 0; i < ingredients.length; i++) {
-        let filter = ingredients[i] ? { name: ingredients[i].toString() } : {};
+        const filter = ingredients[i] ? { name: ingredients[i].toString() } : {};
         ingredient = await Ingredient_1.Ingredient.findOne(filter);
         if (!(ingredient === null)) {
             arrayIngredients.push(ingredient);
         }
     }
+    const predominantGroup = setPredominantGroup_1.setPredominantGroup(arrayIngredients);
     const dish = new Dish_1.Dish({
         "name": name,
         "type": type,
         "ingredients": arrayIngredients,
-        "quantity": quantity
+        "quantity": quantity,
+        "predominantGroup": predominantGroup
     });
     try {
         await dish.save();
         res.status(201).send(dish);
+    }
+    catch (error) {
+        res.status(400).send(error);
+    }
+});
+/**
+ * Post Dishes Router
+ */
+exports.postRouter.post('/menus', async (req, res) => {
+    const { name, price, dishes, nutritionalValue, listGroup } = req.body;
+    const arraydishes = [];
+    let dish;
+    for (let i = 0; i < dishes.length; i++) {
+        const filter = dishes[i] ? { name: dishes[i].toString() } : {};
+        dish = await Dish_1.Dish.findOne(filter);
+        if (!(dish === null)) {
+            arraydishes.push(dish);
+        }
+    }
+    const menu = new Menu_1.Menu({
+        "name": name,
+        "price": price,
+        "dishes": arraydishes,
+        "nutritionalValue": nutritionalValue,
+        "listGroup": listGroup,
+    });
+    try {
+        await menu.save();
+        res.status(201).send(menu);
     }
     catch (error) {
         res.status(400).send(error);
