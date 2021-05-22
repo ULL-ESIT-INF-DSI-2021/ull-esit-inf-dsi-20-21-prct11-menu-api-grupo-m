@@ -11,7 +11,6 @@ export interface DishInterface extends Document {
   price: number,
 }
 
-
 export const DishSchema = new Schema({
   name: {
       type: String,
