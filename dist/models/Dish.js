@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Dish = exports.DishSchema = void 0;
 const mongoose_1 = require("mongoose");
-const Ingredient_1 = require("./Ingredient");
 exports.DishSchema = new mongoose_1.Schema({
     name: {
         type: String,
@@ -21,10 +20,13 @@ exports.DishSchema = new mongoose_1.Schema({
         required: true,
         enum: ['starter', 'first', 'second', 'dessert'],
     },
-    ingredients: {
-        type: [Ingredient_1.IngredientSchema],
-        required: true,
-    },
+    ingredients: [
+        {
+            type: mongoose_1.Schema.Types.ObjectId,
+            ref: 'Ingredient',
+            required: true,
+        }
+    ],
     quantity: [
         {
             type: Number,

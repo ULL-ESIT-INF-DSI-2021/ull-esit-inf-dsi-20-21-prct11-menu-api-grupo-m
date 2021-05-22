@@ -1,5 +1,5 @@
 import {Document, Schema, model} from 'mongoose';
-import {DishInterface, DishSchema} from './Dish';
+import {DishInterface} from './Dish';
 
 interface MenuInterface extends Document {
   name: string,
@@ -28,10 +28,13 @@ const MenuSchema = new Schema({
     required: true,
   },
 
-  dishes: {
-    type: [DishSchema],
-    requiered: true,
-  },
+  dishes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Dishes',
+      required: true,
+    }
+  ],
 
   nutritionalValue: {
     type: Number,

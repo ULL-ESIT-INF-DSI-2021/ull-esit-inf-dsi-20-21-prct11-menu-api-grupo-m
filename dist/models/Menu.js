@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Menu = void 0;
 const mongoose_1 = require("mongoose");
-const Dish_1 = require("./Dish");
 const MenuSchema = new mongoose_1.Schema({
     name: {
         type: String,
@@ -21,10 +20,13 @@ const MenuSchema = new mongoose_1.Schema({
         type: Number,
         required: true,
     },
-    dishes: {
-        type: [Dish_1.DishSchema],
-        requiered: true,
-    },
+    dishes: [
+        {
+            type: mongoose_1.Schema.Types.ObjectId,
+            ref: 'Dishes',
+            required: true,
+        }
+    ],
     nutritionalValue: {
         type: Number,
         required: true,
