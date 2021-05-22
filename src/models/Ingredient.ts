@@ -14,7 +14,6 @@ export interface IngredientInterface extends Document {
 export const IngredientSchema = new Schema({
     name: {
         type: String,
-        unique: true,
         required: true,
         trim: true,
         validate: (value: string) => {

@@ -6,7 +6,6 @@ const Dish_1 = require("./Dish");
 const MenuSchema = new mongoose_1.Schema({
     name: {
         type: String,
-        unique: true,
         required: true,
         trim: true,
         validate: (value) => {

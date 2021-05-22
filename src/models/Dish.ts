@@ -14,7 +14,6 @@ export interface DishInterface extends Document {
 export const DishSchema = new Schema({
   name: {
       type: String,
-      unique: true,
       required: true,
       trim: true,
       validate: (value: string) => {
