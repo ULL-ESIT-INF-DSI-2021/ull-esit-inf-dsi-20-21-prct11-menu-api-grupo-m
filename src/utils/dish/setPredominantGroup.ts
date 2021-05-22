@@ -44,10 +44,10 @@ export function setPredominantGroup(ingredientList: IngredientInterface[], quant
       predominantGroup = 'group3';
       break;
     case 'group4':
-      predominantGroup = 'grupo4';
+      predominantGroup = 'group4';
       break;
     case 'group5':
-      predominantGroup = 'grupo5';
+      predominantGroup = 'group5';
       break;
   }
   return predominantGroup;

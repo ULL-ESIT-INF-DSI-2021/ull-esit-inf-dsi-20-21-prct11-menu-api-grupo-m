@@ -17,7 +17,7 @@ app.use(get_1.getRouter);
 app.use(patch_1.patchRouter);
 app.use(delete_1.deleteRouter);
 app.use(default_1.defaultRouter);
-const port = process.env.PORT || 3100;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Server is up on port ${port}`);
 });
