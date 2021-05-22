@@ -25,7 +25,6 @@ exports.DishSchema = new mongoose_1.Schema({
         {
             type: mongoose_1.Schema.Types.ObjectId,
             ref: 'Ingredient',
-            unique: true,
             required: true,
         }
     ],
