@@ -1,28 +1,28 @@
 import {IngredientInterface} from '../../models/Ingredient';
 
-export function setPredominantGroup(ingredientList: IngredientInterface[]): string {
+export function setPredominantGroup(ingredientList: IngredientInterface[], quantity: any[]): string {
   const countGroup1: [number, string] = [0, 'group1'];
   const countGroup2: [number, string] = [0, 'group2'];
   const countGroup3: [number, string] = [0, 'group3'];
   const countGroup4: [number, string] = [0, 'group4'];
   const countGroup5: [number, string] = [0, 'group5'];
-  ingredientList.forEach((ingredient) => {
-    const i: string = ingredient.group;
-    switch (i) {
+  ingredientList.forEach((ingredient, i) => {
+    const j: string = ingredient.group;
+    switch (j) {
       case 'group1':
-        countGroup1[0]++;
+        countGroup1[0] += quantity[i];
         break;
       case 'group2':
-        countGroup2[0]++;
+        countGroup2[0] += quantity[i];
         break;
       case 'group3':
-        countGroup3[0]++;
+        countGroup3[0] += quantity[i];
         break;
       case 'group4':
-        countGroup4[0]++;
+        countGroup4[0] += quantity[i];
         break;
       case 'group5':
-        countGroup5[0]++;
+        countGroup5[0] += quantity[i];
         break;
     }
   });

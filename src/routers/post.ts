@@ -37,8 +37,8 @@ postRouter.post('/courses', async (req, res) => {
         }
     }
 
-    const predominantGroup = setPredominantGroup(arrayIngredients);
-    const nutriValue = setNutriValue(arrayIngredients);
+    const predominantGroup = setPredominantGroup(arrayIngredients, quantity);
+    const nutriValue = setNutriValue(arrayIngredients, quantity);
     const price = setPrice(arrayIngredients, quantity);
 
     const dish = new Dish({

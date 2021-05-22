@@ -26,6 +26,7 @@ const Dish_1 = require("../models/Dish");
 const Menu_1 = require("../models/Menu");
 const setPredominantGroup_1 = require("../utils/dish/setPredominantGroup");
 const setNutriValue_1 = require("../utils/dish/setNutriValue");
+const setPrice_1 = require("../utils/dish/setPrice");
 exports.postRouter = express.Router();
 /**
  * Post Ingredient Router
@@ -54,15 +55,17 @@ exports.postRouter.post('/courses', async (req, res) => {
             arrayIngredients.push(ingredient);
         }
     }
-    const predominantGroup = setPredominantGroup_1.setPredominantGroup(arrayIngredients);
-    const nutriValue = setNutriValue_1.setNutriValue(arrayIngredients);
+    const predominantGroup = setPredominantGroup_1.setPredominantGroup(arrayIngredients, quantity);
+    const nutriValue = setNutriValue_1.setNutriValue(arrayIngredients, quantity);
+    const price = setPrice_1.setPrice(arrayIngredients, quantity);
     const dish = new Dish_1.Dish({
         "name": name,
         "type": type,
         "ingredients": arrayIngredients,
         "quantity": quantity,
         "predominantGroup": predominantGroup,
-        "nutritionalValue": nutriValue
+        "nutritionalValue": nutriValue,
+        "price": price
     });
     try {
         await dish.save();
