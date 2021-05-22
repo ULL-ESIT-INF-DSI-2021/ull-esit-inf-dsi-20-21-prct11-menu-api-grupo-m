@@ -16,7 +16,6 @@ export const DishSchema = new Schema({
       type: String,
       required: true,
       trim: true,
-      unique: true,
       validate: (value: string) => {
           if (!value.match(/^[A-Z]/)) {
             throw new Error('Dish title must start with a capital letter');
