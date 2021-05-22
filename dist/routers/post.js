@@ -35,7 +35,17 @@ exports.postRouter = express.Router();
  * Post Ingredient Router
  */
 exports.postRouter.post('/ingredients', async (req, res) => {
-    const ingredient = new Ingredient_1.Ingredient(req.body);
+    const { name, origin, group, lipids, carbohydrates, proteins, kcalories, price } = req.body;
+    const ingredient = new Ingredient_1.Ingredient({
+        "name": name,
+        "origin": origin,
+        "group": group,
+        "lipids": lipids,
+        "carbohydrates": carbohydrates,
+        "proteins": proteins,
+        "kcalories": kcalories,
+        "price": price
+    });
     try {
         await ingredient.save();
         res.status(201).send(ingredient);
