@@ -27,6 +27,9 @@ const Menu_1 = require("../models/Menu");
 const setPredominantGroup_1 = require("../utils/dish/setPredominantGroup");
 const setNutriValue_1 = require("../utils/dish/setNutriValue");
 const setPrice_1 = require("../utils/dish/setPrice");
+const setTotalPrice_1 = require("../utils/menu/setTotalPrice");
+const setNutritionalMenu_1 = require("../utils/menu/setNutritionalMenu");
+const setListGroup_1 = require("../utils/menu/setListGroup");
 exports.postRouter = express.Router();
 /**
  * Post Ingredient Router
@@ -79,20 +82,23 @@ exports.postRouter.post('/courses', async (req, res) => {
  * Post Dishes Router
  */
 exports.postRouter.post('/menus', async (req, res) => {
-    const { name, price, dishes, nutritionalValue, listGroup } = req.body;
-    const arraydishes = [];
+    const { name, dishes } = req.body;
+    const arrayDishes = [];
     let dish;
     for (let i = 0; i < dishes.length; i++) {
         const filter = dishes[i] ? { name: dishes[i].toString() } : {};
         dish = await Dish_1.Dish.findOne(filter);
         if (!(dish === null)) {
-            arraydishes.push(dish);
+            arrayDishes.push(dish);
         }
     }
+    const price = setTotalPrice_1.setTotalPrice(arrayDishes);
+    const nutritionalValue = setNutritionalMenu_1.setNutritionalMenu(arrayDishes);
+    const listGroup = setListGroup_1.setListGroup(arrayDishes);
     const menu = new Menu_1.Menu({
         "name": name,
         "price": price,
-        "dishes": arraydishes,
+        "dishes": arrayDishes,
         "nutritionalValue": nutritionalValue,
         "listGroup": listGroup,
     });

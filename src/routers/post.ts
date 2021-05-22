@@ -5,6 +5,9 @@ import {Menu} from '../models/Menu';
 import {setPredominantGroup} from '../utils/dish/setPredominantGroup';
 import {setNutriValue} from '../utils/dish/setNutriValue';
 import {setPrice} from '../utils/dish/setPrice';
+import {setTotalPrice} from '../utils/menu/setTotalPrice';
+import {setNutritionalMenu} from '../utils/menu/setNutritionalMenu';
+import {setListGroup} from '../utils/menu/setListGroup';
 
 export const postRouter = express.Router();
 
@@ -64,21 +67,25 @@ postRouter.post('/courses', async (req, res) => {
  */
 
  postRouter.post('/menus', async (req, res) => {
-    const {name, price, dishes, nutritionalValue, listGroup} = req.body;
-    const arraydishes: DishInterface[] = [];
+    const {name, dishes} = req.body;
+    const arrayDishes: DishInterface[] = [];
     let dish;
     for (let i = 0; i < dishes.length; i++) {
         const filter = dishes[i]?{name: dishes[i].toString()}:{};
         dish = await Dish.findOne(filter);
         if (!(dish  === null)) {
-            arraydishes.push(dish);
+            arrayDishes.push(dish);
         }
     }
+
+    const price = setTotalPrice(arrayDishes);
+    const nutritionalValue = setNutritionalMenu(arrayDishes);
+    const listGroup = setListGroup(arrayDishes);
 
     const menu = new Menu({
         "name": name,
         "price": price,
-        "dishes": arraydishes,
+        "dishes": arrayDishes,
         "nutritionalValue": nutritionalValue,
         "listGroup": listGroup,
     });
