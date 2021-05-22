@@ -1,5 +1,5 @@
 import {Document, Schema, model} from 'mongoose';
-import {IngredientInterface} from './Ingredient';
+import {IngredientInterface, IngredientSchema} from './Ingredient';
 
 export interface DishInterface extends Document {
   name: string,
@@ -31,8 +31,7 @@ export const DishSchema = new Schema({
   },
   ingredients: [
     {
-      type: Schema.Types.ObjectId,
-      ref: 'Ingredient',
+      type: [IngredientSchema],
       required: true,
     }
   ],
