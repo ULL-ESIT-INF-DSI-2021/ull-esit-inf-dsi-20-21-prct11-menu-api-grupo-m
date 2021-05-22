@@ -34,7 +34,6 @@ export const DishSchema = new Schema({
     {
       type: Schema.Types.ObjectId,
       ref: 'Ingredient',
-      unique: true,
       required: true,
     }
   ],
