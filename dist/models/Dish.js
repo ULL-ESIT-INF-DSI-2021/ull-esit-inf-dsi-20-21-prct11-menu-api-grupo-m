@@ -22,12 +22,10 @@ exports.DishSchema = new mongoose_1.Schema({
         required: true,
         enum: ['starter', 'first', 'second', 'dessert'],
     },
-    ingredients: [
-        {
-            type: [Ingredient_1.IngredientSchema],
-            required: true,
-        }
-    ],
+    ingredients: {
+        type: [Ingredient_1.IngredientSchema],
+        required: true,
+    },
     quantity: [
         {
             type: Number,

@@ -30,12 +30,10 @@ export const DishSchema = new Schema({
       required: true,
       enum: ['starter', 'first', 'second', 'dessert'],
   },
-  ingredients: [
-    {
+  ingredients: {
       type: [IngredientSchema],
       required: true,
-    }
-  ],
+  },
   quantity: [
     {
       type: Number,
