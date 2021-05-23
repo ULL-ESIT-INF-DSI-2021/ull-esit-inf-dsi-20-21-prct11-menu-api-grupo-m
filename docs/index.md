@@ -1,17 +1,18 @@
 # Práctica 11. API Node/Express de gestión de información nutricional
 
-## Grupo M
-
-Karina Kalwani
-
-Micaela Lucia Mungay Juncal
-
-Carla Oval Torres
-
-Eduardo Pérez Suárez
-
-Xue Mei Lin
-
+----------------------------------------------------------
+## Grupo M   |   ALUS
+----------------------------------------------------------
+Karina Kalwani |   alu0101109046@ull.edu.es
+----------------------------------------------------------
+Micaela Lucia Mungay Juncal |   alu0101124506@ull.edu.es
+----------------------------------------------------------
+Carla Oval Torres |   alu0101036694@ull.edu.es
+----------------------------------------------------------
+Eduardo Pérez Suárez |   alu0100890174@ull.edu.es
+----------------------------------------------------------
+Xue Mei Lin |   alu0101225845@ull.edu.es
+----------------------------------------------------------
 
 ## Repositorio de GitHub con el código fuente de la práctica
 
