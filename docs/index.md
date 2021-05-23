@@ -25,7 +25,7 @@ En esta práctica tendremos que desarrollar una API basándonos en la anterior p
 
 https://ull-esit-inf-dsi-2021.github.io/prct11-menu-api/
 
-Sintetizando, tendremos que implementar una API, haciendo uso de Node/Express, que permita llevar a cabo operaciones de creación, lectura, modificación y borrado (Create, Read, Update, Delete - CRUD) de ingredientes, platos y menús.
+Sintetizando, tendremos que implementar una API Rest, haciendo uso de Node/Express, que permita llevar a cabo operaciones de creación, lectura, modificación y borrado (Create, Read, Update, Delete - CRUD) de ingredientes, platos y menús.
 Los requisitos que se nos exigen en la práctica abarcan la existencia de un objeto Alimento/Ingrediente, un objeto Plato, un objeto Menú, un objeto Carta y un objeto Comanda, que ya implementamos en la práctica anterior. Estos objetos interactuarán entre sí y tendrán cada uno una serie de elementos internos, atributos o características que los componen. 
 
 A continuación, se enumeran algunos requisitos que deberá cumplir el API, en lo que respecta a las diferentes rutas o puntos de acceso JSON que deberá proporcionar:
