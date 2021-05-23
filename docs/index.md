@@ -1115,7 +1115,7 @@ Thunder Client nos permite realizar peticiones de tipo:
  También podemos definir variables de entorno que nos sirvan como atajos para mejorar la legibilidad de las peticiones y agilizar nuestro trabajo.
 
 
-## Conclusiones
+## 4. Conclusiones
 
 Este proyecto Ha sido el más extenso y complejo de la asignatura, por suerte el trabajo del profesor y de todo el equipo ha permitido minimizar la dificultad de la elaboración del mismo. Enfrentarse al desarollo de este también ha resultado en una experiencia muy valiosa para aprender a desenvolvernos con APIs ya que es la primera vez que las trabajamos y ahora tenemos las bases para seguir progresando en el desarrollo de estas de cara al mundo laboral.
 
