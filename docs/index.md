@@ -168,7 +168,11 @@ export const IngredientSchema = new Schema({
 export const Ingredient = model<IngredientInterface>('Ingredient', IngredientSchema);
 ```
 
+Mediante la última línea creamos la base de datos de `Ingredientes`, pasándole a `model<>` la interfaz que hemos creado para indicarle que es del tipo de la interfaz, el nombre de la misma y su schema. Y ya tendríamos este elemento en MongoDB.
+
 ### Plato
+
+Creamos la interfaz, el schema basándonos en la interfaz y la colección con model pasándole la interfaz. En plato o `Dish` deberemos cambiar el atributo `ingredients` que es un array y deberemos comprobar que el ingrediente del plato existe previamente. Además en `type` se define un enumerable con la categroría del plato, en `predominantGroup` se definen los grupos igual que hicimos en la interfaz `Ingredients` y se estructuran también los demás atributos definiéndolos por su tipo y con las características pertinentes como ya hicimos en la interfaz anterior.
 
 ```ts
 export interface DishInterface extends Document {
@@ -232,9 +236,11 @@ export const DishSchema = new Schema({
 export const Dish = model<DishInterface>('Dish', DishSchema);
 ```
 
-Mediante la última línea creamos la base de datos de `Ingredientes`, pasándole a `model<>` la interfaz que hemos creado para indicarle que es del tipo de la interfaz, el nombre de la misma y su schema. Y ya tendríamos este elemento en MongoDB.
+Mediante la última línea creamos la base de datos de `Dish`, pasándole a `model<>` la interfaz que hemos creado para indicarle que es del tipo de la interfaz, el nombre de la misma y su schema. Y ya tendríamos este elemento en MongoDB.
 
 ### Menú
+
+De nuevo creamos la interfaz, el schema basándonos en la interfaz y la colección con model pasándole la interfaz. En `Menu` deberemos cambiar el atributo `dishes` que es un array y deberemos comprobar que cada plato existe previamente. Definimos como tipo `Number` los atributos `price` y `nutritionalValue` y la lista `listGroup` con los distintos grupos a los que pueden pertenecer.
 
 ```ts
 interface MenuInterface extends Document {
@@ -287,6 +293,9 @@ const MenuSchema = new Schema({
 
 export const Menu = model<MenuInterface>('Menu', MenuSchema);
 ```
+
+Mediante la última línea creamos la base de datos de `Menu`, pasándole a `model<>` la interfaz que hemos creado para indicarle que es del tipo de la interfaz, el nombre de la misma y su schema. Y ya tendríamos este elemento en MongoDB.
+
 
 ## Base de datos MongoDB y Mongoose
 
@@ -446,6 +455,13 @@ getRouter.get('/menus/:id', async (req, res) => {
 
 ### Router Post
 
+Los routers pretenden establecer una conexión entre el cliente y el servidor, teniendo este último la base de datos que nos va a resolver los diferentes elementos del menú, ingredientes y platos. Se va a intentar también procesar  las peticiones del cliente, que pueden ser de tipo lectura, escritura, eliminación o modificación. Para esto vamos a utilizar peticiones HTTP para cada operación.
+
+Para cada operación se van a implementar operaciones CRUD ("Crear, Leer, Actualizar y Borrar" o "Create, Read, Update and Delete"), y para cada una se usará una una petición HTTP.
+
+Para la operación de crear o escritura de un ingrediente utilizaremos una petición de tipo `post`, para read o lectura utilizaremos una petición de tipo `get`, para update o modificar utilizaremos una peticion de tipo `patch` y para eliminar un elemento la petición HTTP `delete`. Cualquier otra peticion HTTP que el cliente pida al servidor se denegará ya que estas serán las cuatro únicas operaciones soportadas.
+
+
 ```ts
 import * as express from 'express';
 import {Ingredient, IngredientInterface} from '../models/Ingredient';
@@ -562,7 +578,20 @@ postRouter.post('/courses', async (req, res) => {
 
 ```
 
+La petición de tipo post o de crear invoca al método post en el router, se le pasa la ruta por la cual el usuario puede acceder a las peticiones (por ejemplo /ingredients). Se podría acceder con `localhost:(num_port)/ingredients` o una vez desplegado la aplicación Heroku con la url de Heroku y `/ingredients`. Mediante una función callback y sus parámetros `req` (request, donde está todo lo que el usuario envía, en nuestro caso objetos JSON, en post recibe todos los atributos que se van a añadir a la base de datos) y `ref` (response, lo que nosotros enviaremos al usuario de vuelta). Por simplicidad en el código se crea una variable por cada atributo en el `req`.
+
+Luego se crea el ingrediente con todos los atributos que se asignaron con el `req` y lo guarda en la base de datos con el comando `save`. Si lo consigue guardad envía un código 201, que nos dice que la operación ha sido realizada correctamente, y si no lo consigue enviar manda un mensaje de error con código 400.
+
+En el caso de courses y menu sería similar exceptuando el atributo que referencia a otra colección, en este caso lo que se hace es que antes de guardar como un objeto de la base de datos es comprobar si esos elementos existen en la colección de ingredientes recorriendo el array buscando el elemento en dicha colección mediante el método `findOne` (si encuentra el ingrediente, almacena en la variable sus detalles, si no devuelve NULL). Si lo encuentra lo almacena en la variable array `ingredients` y crea el objeto dish y lo guarda.
+
+
 ### Router Patch
+
+La siguiente petición es el get, que se usa para leer un ingrediente, plato o menú. Hay dos formas de ejecutarlo, la primera sería por el nombre del elemento, la segunda por el ID único que le asigna Mongoose.
+
+En el caso del nombre, primero se convierte a un tipo string para evitar errores. Mediante los métodos findOne (devuelve los detalles de la primera ocurrencia de un elemento o NULL en el caso de no encontrarlo) y find (devuelve todas las ocurrencias del elemento y los almacena en un array, que en el caso de no haber ocurrencias estará vacío, es decir, será de tamaño cero y se devuelve un error).
+
+Por el ID se recibe una ID asignada a un único elemento y por lo tanto la variable o tendrá un valor o estará vacía, no podrá ser un array, así que lo podemos comproba con un not a ingredient. Se haría lo mismo con plato y con menú.
 
 ```ts
 import * as express from 'express';
