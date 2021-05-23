@@ -26,7 +26,7 @@ En esta práctica tendremos que desarrollar una API basándonos en la anterior p
 https://ull-esit-inf-dsi-2021.github.io/prct11-menu-api/
 
 Sintetizando, tendremos que implementar una API Rest, haciendo uso de Node/Express, que permita llevar a cabo operaciones de creación, lectura, modificación y borrado (Create, Read, Update, Delete - CRUD) de ingredientes, platos y menús.
-Los requisitos que se nos exigen en la práctica abarcan la existencia de un objeto Alimento/Ingrediente, un objeto Plato, un objeto Menú, un objeto Carta y un objeto Comanda, que ya implementamos en la práctica anterior. Estos objetos interactuarán entre sí y tendrán cada uno una serie de elementos internos, atributos o características que los componen. 
+Los requisitos que se nos exigen en la práctica abarcan la existencia de un objeto Alimento/Ingrediente, un objeto Plato y un objeto Menú. Estos objetos interactuarán entre sí y tendrán cada uno una serie de elementos internos, atributos o características que los componen. 
 
 A continuación, se enumeran algunos requisitos que deberá cumplir el API, en lo que respecta a las diferentes rutas o puntos de acceso JSON que deberá proporcionar:
 
@@ -38,7 +38,7 @@ A continuación, se enumeran algunos requisitos que deberá cumplir el API, en l
 
 ## 2. Enunciados de los distintos elementos u objetos propuestos en el ejercicio
 
-Hemos utilizado la estructura de las clases Alimento/Ingrediente, Plato y Menú de la práctica anterior número 7 para definir nuevos esquemas propios de Mongoose, estos esquemas implementan una interfaz extendida desde Documents para facilitar el manejo de sentencias query. Estos esquemas nos sirven para crear modelos de datos comprensibles para nuestra base de datos, permitiendonos usar funciones como find, save,... Funciones que nos permiten manipular nuestra BD.
+Hemos utilizado la estructura de las clases Alimento/Ingrediente, Plato y Menú de la práctica anterior número 7 para definir nuevos esquemas propios de Mongoose, estos esquemas implementan una interfaz extendida desde *Documents* para facilitar el manejo de sentencias query. Estos esquemas nos sirven para crear modelos de datos comprensibles para nuestra base de datos, permitiendonos usar funciones como find, save,... Funciones que nos permiten manipular nuestra BD.
 
 ### Ingredientes
 
@@ -1118,7 +1118,7 @@ Thunder Client nos permite realizar peticiones de tipo:
 
 ## 4. Conclusiones
 
-Este proyecto Ha sido el más extenso y complejo de la asignatura, por suerte el trabajo del profesor y de todo el equipo ha permitido minimizar la dificultad de la elaboración del mismo. Enfrentarse al desarollo de este también ha resultado en una experiencia muy valiosa para aprender a desenvolvernos con APIs ya que es la primera vez que las trabajamos y ahora tenemos las bases para seguir progresando en el desarrollo de estas de cara al mundo laboral.
+Este proyecto ha sido el más extenso y complejo de la asignatura, pero el trabajo del profesor y de todo el equipo ha permitido minimizar la dificultad de la elaboración del mismo. Enfrentarse al desarollo de este también ha resultado en una experiencia muy valiosa para aprender a desenvolvernos con APIs ya que es la primera vez que las trabajamos y ahora tenemos las bases para seguir progresando en el desarrollo de éstas de cara al mundo laboral.
 
 El uso de MongoDB ha resultado mucho más sencillo que LowDB, en parte porque se nos ha explicado más detalladamente y por otro lado porque parece un Módulo más robusto y maleable para acomplarlo a este tipo de proyectos.
 
