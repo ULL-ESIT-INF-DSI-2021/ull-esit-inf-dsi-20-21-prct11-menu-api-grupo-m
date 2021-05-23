@@ -20,7 +20,7 @@ Xue Mei Lin
 
 ## Descripción de la práctica
 
-En esta práctica tendremos que desarrollar una API a basándonos en la anterior práctica grupal que hemos desarrollado. Las instrucciones de la tarea se encuentran en el siguiente recurso:
+En esta práctica tendremos que desarrollar una API basándonos en la anterior práctica grupal que hemos desarrollado. Las instrucciones de la tarea se encuentran en el siguiente recurso:
 
 https://ull-esit-inf-dsi-2021.github.io/prct11-menu-api/
 
@@ -98,7 +98,15 @@ En cuanto al objeto menú, este está compuesto por platos, incluyendo un plato 
 
 ## Implementación
 
+Para empezar, nuestra base de datos de Mongoose estará compuesta por tres colecciones distintas y codependientes entre sí, que son `Ingredient`, `Dish` y `Menu` que hemos definido a partir de nuestro desarrollo de la anterior práctica grupal. Cada una de estas colecciones tendrá un schema propio.
+
 ### Ingredientes
+
+La colección `Ingredientes` estará compuesta por una serie de atributos únicos con distintas funciones. Para empezar definimos como interfaz (`interface`) nuestro elemento `Ingredientes`. Algunos elementos de interés que hemos utilizado para definirlos son `type`, que en nuestro caso es `String` (debe ir en mayúscula), `unique`, que hace que no se repitan los nombres, `validate`, que nos comprueba una condición, en este caso que el nombre del ingrediente comienza con mayúscula y `trim`, que nos elimina los espacios sobrantes de un string.
+
+El elemento `origin` lo hemos declarado como `String`, es un atributo requerido, al que le aplicamos el mismo `trim`. Para el caso del atributo `group` haremos lo mismo y además enumeramos sus posibles valores, y establecemos un valor por defecto en el caso de que no se le asigne ningún grupo, que será `group1`.
+
+Para los atributos `lipids`, `proteins`, `kcalories`, `carbohydrates` y `price`, solo establecemos su tipo, que para todos será tipo `Number` (también con mayúscula) y si es requerido.
 
 ```ts
 export interface IngredientInterface extends Document {
@@ -223,6 +231,8 @@ export const DishSchema = new Schema({
 
 export const Dish = model<DishInterface>('Dish', DishSchema);
 ```
+
+Mediante la última línea creamos la base de datos de `Ingredientes`, pasándole a `model<>` la interfaz que hemos creado para indicarle que es del tipo de la interfaz, el nombre de la misma y su schema. Y ya tendríamos este elemento en MongoDB.
 
 ### Menú
 
