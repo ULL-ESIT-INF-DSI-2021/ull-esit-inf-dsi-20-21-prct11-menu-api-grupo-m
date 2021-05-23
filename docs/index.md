@@ -1,7 +1,7 @@
 # Práctica 11. API Node/Express de gestión de información nutricional
 
 ----------------------------------------------------------
-## Grupo M   |   ALUS
+Grupo M   |   ALUS
 ----------------------------------------------------------
 Karina Kalwani |   alu0101109046@ull.edu.es
 ----------------------------------------------------------
