@@ -22,9 +22,9 @@
 
 En este proyecto grupal el objetivo es que implementar una API Rest, haciendo uso de Node/Express, que permita llevar a cabo operaciones de creación, lectura, modificación y borrado (Create, Read, Update, Delete - CRUD) de ingredientes, platos y menús.
 
-Los requisitos que se nos exigen en la práctica abarcan la existencia de un objeto Alimento/Ingrediente, un objeto Plato, un objeto Menú, un objeto Carta y un objeto Comanda, que ya implementamos en la práctica anterior. Estos objetos interactuarán entre sí y tendrán cada uno una serie de elementos internos, atributos o características que los componen. 
+Los requisitos que se nos exigen en la práctica abarcan la existencia de esquemas y modelos para Ingrediente, Plato y Menú. Estos esquemas presentarán una relación many-to-many de los elementos contenidos ya que Menus hará relaciona varios platos y a su vez, platos a alimentos.
 
-Dicha API debe alojar la colección de elementos creados en un servidor para Base de Datos en nuestro caso useremos MongoDB y debe estar alojada en la nube (Heroku).
+Dicha API debe alojar la colección de elementos creados en un servidor para Base de Datos en nuestro caso MongoDB y debe estar alojada en la nube (Heroku).
 
 | Github Pages | 
 | ------------ |
