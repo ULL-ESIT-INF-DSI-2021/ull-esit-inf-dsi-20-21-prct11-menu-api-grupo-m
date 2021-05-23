@@ -1086,13 +1086,13 @@ En nuestro caso nuestro programa es capaz de trabajar en local con una base de d
 
 Por otro lado tambien es capaz de compartir información con un servidor online y crear colecciones en la red, esto es así gracias a un servidor de base de datos ofrecido por ```MongoDB Atlas``` que por medio de un cluster permite alojar colecciones en sus servidores.
 
-|[Imagen](docs/img/mongoDB-Atlas.PNG)
+![Imagen](docs/img/mongoDB-Atlas.PNG)
 
 ## Computación en la Red 
 
 El objetivo de nuestra API Rest es que sirva contenido a los usuarios que soliciten peticiones a su servicio sin la necesidad de Montar el servidor en su máquina local, para ello usarémos ```Heroku``` un proveedor de servicio de computación en la red que se encargará de ejecutar el servidor API Rest de nuestro proyecto.
 
-|[Imagen](docs/img/heroku.PNG)
+![Imagen](docs/img/heroku.PNG)
 ## Peticiones HTTP
 
 Nuestro proyecto al ser un servicio API Rest, trabaja compartiendo información entre clientes y servidor por medio del uso de las ```Peticiones HTTP``` que es un protocolo diseñado para transferir hipertexto en internet. 
@@ -1108,7 +1108,7 @@ Thunder Client nos permite realizar peticiones de tipo:
  * Patch
  * Otras...
 
-|[Imagen](docs/img/thunder-client.PNG)
+![Imagen](docs/img/thunder-client.PNG)
 
  Además nos permite guardar nuestras peticiones en colecciones para Ordenar nuestras peticiones, preservarlas y utilizarlas posteriormente.
 
