@@ -37,11 +37,11 @@ A continuación, se enumeran algunos requisitos que deberá cumplir el API, en l
 
 ## Enunciados de los distintos elementos u objetos propuestos en el ejercicio
 
-Primero haremos un repaso rápido de los elementos que definimos en la anterior práctica y que usaremos en esta. Empezando por las clases Alimento/Ingrediente, Plato, Menú, Carta y Comanda:
+Hemos utilizado la estructura de las clases Alimento/Ingrediente, Plato y Menú de la práctica anterior número 7 para definir nuevos esquemas propios de Mongoose, estos esquemas implementan una interfaz extendida desde Documents para facilitar el manejo de sentencias query. Estos esquemas nos sirven para crear modelos de datos comprensibles para nuestra base de datos, permitiendonos usar funciones como find, save,... Funciones que nos permiten manipular nuestra BD.
 
 ### Ingredientes
 
-Hemos incluido un objeto de tipo ingrediente o alimento, como lo queramos llamar (en nuestro caso hemos escogido "ingrediente"). Para cada alimento o ingrediente considerado dentro del sistema de diseño de menús se debe almacenar la información siguiente:
+Hemos definido un esquema mongoose tipo ingrediente o alimento, como lo queramos llamar (en nuestro caso hemos escogido "ingrediente"). Para cada alimento o ingrediente considerado dentro del sistema de diseño de menús se debe almacenar la información siguiente:
 
 - Nombre del alimento
 - Origen del alimento
@@ -53,17 +53,11 @@ Hemos incluido un objeto de tipo ingrediente o alimento, como lo queramos llamar
 - La composición nutricional del alimento, es decir, macronutrientes (hidratos de carbono, proteínas y lípidos) y kcal por 100 gr.
 - Precio del alimento y/o ingrediente por kg en euros.
 
-*En la clase que representará cada alimento o ingrediente, llamada Ingredient, hemos definido una serie de atributos y métodos para poder implementar las características que se nos describen en el enunciado.*
 
-*Tenemos dos elementos, un tipo y un enumerable, y que representan los grupos a los que puede pertenecer un ingrediente (en el caso del enumerable) y una tupla  que representa un macro nutriente (compuesta por el string de su nombre y su cantidad) y que añadiremos como atributo de la clase.*
-
-*A parte de éste, como atributos de la clase definidos en el constructor a su vez tenemos los strings `name` (que representa el nombre del ingrediente) y `origin` (que representa el origen del mismo, de dónde viene o dónde ha sido producido), los tipo number `lipids`, `carbohydrates` y `proteins` (que representan los valores de los distintos macronutrientes que después al almacenaremos junto con su nombre en la tupla macronutrient) y los tipo number `kcalories` (número de calorías por 100g) y `price` (precio por kg)*
-
-*Asimismo, los métodos que hemos definido para esta clase son `getGroup()`, `getPrice()` y `printIngredient()`, que nos devuelven el valor de los atributos `group`, `price` y nos imprimen por pantalla todos los atributos del ingrediente respectivamente.*
 
 ### Plato
 
-También hemos definido un objeto de tipo plato. Los platos de un menú estarán compuestos por alimentos y/o ingredientes.
+También hemos definido un un esquema mongoose tipo plato. Los platos de un menú estarán compuestos por alimentos y/o ingredientes.
 
 - Categoría (entrante, primer plato, segundo plato y postre).
 - Lista de alimentos y/o ingredientes que lo componen.
@@ -71,29 +65,26 @@ También hemos definido un objeto de tipo plato. Los platos de un menú estarán
 - Grupo de alimento predominante (entre los ingredientes del plato).
 - Precio total del plato en euros en función de la suma de los precios de los ingredientes y sus cantidades que lo componen.
 
-*Esta clase representa cada plato mediante una serie de atributos, los cuales serán los que nos transmitan la información sobre el mismo*
+*Este esquema representa cada plato mediante una serie de atributos, los cuales serán los que nos transmitan la información sobre el mismo*
 
 *Tiene un enumerable, el cual usamos para indicar el tipo de plato, que puede ser, según las categorías que hemos definido: entrante, primer plato, segundo plato o postre*
 
-*Ademas tiene como atributos `dishprice`, el cual representará el precio total del plato (calculado con el precio de cada ingrediente segun su peso), `predominantGroup` que nos dice el grupo alimenticio principal del plato (es decir, el que se repite mas veces), `nameDish` el nombre del plato, `ingredientList` que es un vector de ingredientes (en el cual ademas de almacenar el ingrediente almacena el peso en gramos que se utiliza del mismo), `nutritionalValue` valor total nutricional del plato, y por ultimo, `type`, que es donde se almacena el tipo de plato (es decir, el enumerable antes mencionado)*
+*Ademas tiene como atributos `price`, el cual representará el precio total del plato (calculado con el precio de cada ingrediente segun su peso), `predominantGroup` que nos dice el grupo alimenticio principal del plato (es decir, el que se repite mas veces), `name` el nombre del plato, `ingredients` que es un vector de ingredientes (en el cual ademas de almacenar el ingrediente almacena el peso en gramos que se utiliza del mismo), `nutritionalValue` valor total nutricional del plato, y por ultimo, `type`, que es donde se almacena el tipo de plato (es decir, el enumerable antes mencionado)*
 
-*Así mismo, los métodos que hemos definido para esta clase son `getName()` (que devuelve el nombre del plato o `nameDish`), `getIngredientList()` (que devuelve la lista de ingredientes) y `getType()` (que devuelve el tipo de plato). Además también tenemos los métodos `setPredominantGroup()` (lo que hace es ir por cada uno de los ingredientes mediante un bucle `forEach` haciendo un count, y va viendo de que grupo es cada ingrediente comparándolos y dándole valor a `predominantGroup` para saber ya definitivamente cuál es el predominante), `getPredominantGroup()` (devuelve el grupo predominante), `setPrice()` (va ingrediente por ingrediente calculando el precio de cada uno y mediante una regla de tres lo va sumando al `dishPrice` hasta terminar con la lista de ingredientes, quedando al final en la variable el precio total del plato como la suma de la que cuesta cada ingrediente), `getPrice()` (devuelve el precio del plato `dishPrice`), `getNutritionalValue()` (devuelve `nutritionalValue`) y por último `print()` (que imprime todas las características del plato).*
 
 
 ### Menú
 
-En cuanto al objeto menú, este está compuesto por platos, incluyendo un plato de cada categoría o al menos tres de ellas. Para cada menú, se puede consultar la siguiente información:
+En cuanto al esquema mongoose tipo menú, este está compuesto por platos, incluyendo un plato de cada categoría o al menos tres de ellas. Para cada menú, se puede consultar la siguiente información:
 
 - Precio total del menú en euros.
 - Platos que lo componen con sus correspodientes alimentos y/o ingredientes.
 - Composición nutricional del menú.
 - Listado de grupos de alimentos por orden de aparición.
 
-*Esta clase representa cada menú del programa, es decir, cada uno de los conjuntos de platos (de al menos tres) compuestos por platos del tipo entrante, primero, segundo o postre, mediante una serie de atributos que se explicarán a continuación*
+*Esta esquema representa cada menú del programa, es decir, cada uno de los conjuntos de platoscompuestos por platos del tipo entrante, primero, segundo o postre, mediante una serie de atributos que se explicarán a continuación*
 
-*Tenemos `nameMenu`, el cual usamos como identificador para distinguir entre diferentes menus, `priceMenu` que nos da el precio total del menu calculado gracias a un metodo, `dishesMenu` que es un vector que almacena la totalidad de platos del menu para poder trabajar con ellos de manera mas sencilla, `nutriValue` que contiene el valor nutricional total del menu, `typeMenu` donde se almacenan los principales grupos alimenticios por los que está conformado el menu*
-
-*Además, los metodos definidos para esta clase son: `getName()`, el cual nos devuelve el nombre o identificador del menu, `getDishes()`, que nos devuelve el array `dishesMenu` para poder ver los platos que forman el menu, `calculateTotalMoney()`, que calcula el valor total del menu, `getTotalMoney()`, que nos devuelve el atributo `priceMenu` para poder saber el valor antes de calculado, `calculateNutriValue()`, que nos calcula el valor nutricional total del menu, `getNutriValue()`, que nos devuelve el atributo `nutriValue` para poder saber el valor antes calcularlo, `setTypeMenu()`, donde se busca entre los platos que forman el menu el grupo de alimento predominante y se agrega a la lista, `getTypeMenu()`, que nos devuelve el atributo `typeMenu` para poder ver los grupos de alimentos a los que pertenece que definimos con aterioridad, `printMenu()`, que nos visualiza el menú, y por último, `addDish(newDish: Dish)` el cual nos da la posibilidad de agregar un nuevo plato al menu *
+*Tenemos `name`, el cual usamos como identificador para distinguir entre diferentes menus, `price` que nos da el precio total del menu calculado gracias a un metodo, `dishes` que es un vector que almacena la totalidad de platos del menu para poder trabajar con ellos de manera mas sencilla, `nutritionalValue` que contiene el valor nutricional total del menu, `listGroup` donde se almacenan los principales grupos alimenticios por los que está conformado el menu*
 
 
 ## Implementación
@@ -474,11 +465,11 @@ getRouter.get('/menus/:id', async (req, res) => {
 });
 ```
 
-En cuanto a los errores, estamos procediendo a manejarlos mediante try-catch, y se devuelven dos códigos de error. 
+En cuanto a los errores, estamos procediendo a manejarlos mediante try-catch que recoge los errores identificados en la ejecución del código asíncrono, se distinguen dos principales códigos de error
 
-El código 404 que está en el if, y que nos salta si se encuentra
+El código 404 que está en el if, y que nos salta si no se encuentra el objeto.
 
-Y el código 500 que está en el catch
+Y el código 500 que está en el catch que recoge errores inesperados.
 
 ### Router Post
 
@@ -982,6 +973,7 @@ defaultRouter.all('*', (_, res) => {
 
 ### Platos
 
+Estas funciones son extraídas desde el código original de la práctica número 7 donde ya trabajamos con el proyecto de una Carta Nutricional. Como los requisitos de funcionalidad es el mismo, las funciones que calculan sus datos son similares también.
 
 ```ts
 import {IngredientInterface} from '../../models/Ingredient';
@@ -1085,3 +1077,49 @@ export function setListGroup(dishList: DishInterface[]): string[] {
   return groupList;
 }
 ```
+
+## Base de Datos
+
+Como ya mencionamos anteriormente nuestra práctica hace uso de ```Módulos MongoDB y Mongoose```, pues es la base de datos donde aloja las colecciones de Ingredientes, Platos y Menús creadas por la ```API Rest```. 
+
+En nuestro caso nuestro programa es capaz de trabajar en local con una base de datos ```MongoDB``` creada en la máquina servidora a través de uno de los puertos disponibles, comunmente se usa el ```puerto 3000``` en nuestro servidor.
+
+Por otro lado tambien es capaz de compartir información con un servidor online y crear colecciones en la red, esto es así gracias a un servidor de base de datos ofrecido por ```MongoDB Atlas``` que por medio de un cluster permite alojar colecciones en sus servidores.
+
+[Imagen](docs/img/mongoDB-Atlas.PNG)
+
+## Computación en la Red 
+
+El objetivo de nuestra API Rest es que sirva contenido a los usuarios que soliciten peticiones a su servicio sin la necesidad de Montar el servidor en su máquina local, para ello usarémos ```Heroku``` un proveedor de servicio de computación en la red que se encargará de ejecutar el servidor API Rest de nuestro proyecto.
+
+[Imagen](docs/img/heroku.PNG)
+## Peticiones HTTP
+
+Nuestro proyecto al ser un servicio API Rest, trabaja compartiendo información entre clientes y servidor por medio del uso de las ```Peticiones HTTP``` que es un protocolo diseñado para transferir hipertexto en internet. 
+
+Estas peticiones puede realizarlas cualquier aplicación o servicio que tenga acceso a este tipo de peticiones, ya sea un navegador, un programa con acceso a internet o cualquier aplicación o extención diseñada para Testear APIs.
+
+En nuestro caso usaremos ```Thunder Client``` que es una extención de VSCode que nos permite Testear el funcionamiento de nuestra API usando ssh con nuestra máquina Iaas.
+
+Thunder Client nos permite realizar peticiones de tipo:
+ * Get
+ * Post
+ * Delete
+ * Patch
+ * Otras...
+
+[Imagen](docs/img/thunder-client.PNG)
+
+ Además nos permite guardar nuestras peticiones en colecciones para Ordenar nuestras peticiones, preservarlas y utilizarlas posteriormente.
+
+ También podemos definir variables de entorno que nos sirvan como atajos para mejorar la legibilidad de las peticiones y agilizar nuestro trabajo.
+
+
+# Conclusiones
+
+Este proyecto Ha sido el más extenso y complejo de la asignatura, por suerte el trabajo del profesor y de todo el equipo ha permitido minimizar la dificultad de la elaboración del mismo. Enfrentarse al desarollo de este también ha resultado en una experiencia muy valiosa para aprender a desenvolvernos con APIs ya que es la primera vez que las trabajamos y ahora tenemos las bases para seguir progresando en el desarrollo de estas de cara al mundo laboral.
+
+El uso de MongoDB ha resultado mucho más sencillo que LowDB, en parte porque se nos ha explicado más detalladamente y por otro lado porque parece un Módulo más robusto y maleable para acomplarlo a este tipo de proyectos.
+
+Hemos trabajado usando la extensión de Live Share de Visual Studio Code por lo que es posible que no todos tengamos la misma proporción de commits realizadas pues los commits los realiza el Host de la sesión.
+
