@@ -18,7 +18,7 @@ Xue Mei Lin
 [https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct11-menu-api-grupo-m](https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct11-menu-api-grupo-m)
 
 
-## Descripción de la práctica
+## 1. Descripción de la práctica
 
 En esta práctica tendremos que desarrollar una API basándonos en la anterior práctica grupal que hemos desarrollado. Las instrucciones de la tarea se encuentran en el siguiente recurso:
 
@@ -35,7 +35,7 @@ A continuación, se enumeran algunos requisitos que deberá cumplir el API, en l
 
 - En la ruta /menus del API, se deberá poder crear, leer, actualizar o borrar un menú a través de los métodos HTTP necesarios. Como definimos anteriormente, un menú estará compuesto por platos, incluyendo un plato de cada categoría o, al menos, tres de ellas. Para cada menú, se debe poder consultar la siguiente información
 
-## Enunciados de los distintos elementos u objetos propuestos en el ejercicio
+## 2. Enunciados de los distintos elementos u objetos propuestos en el ejercicio
 
 Hemos utilizado la estructura de las clases Alimento/Ingrediente, Plato y Menú de la práctica anterior número 7 para definir nuevos esquemas propios de Mongoose, estos esquemas implementan una interfaz extendida desde Documents para facilitar el manejo de sentencias query. Estos esquemas nos sirven para crear modelos de datos comprensibles para nuestra base de datos, permitiendonos usar funciones como find, save,... Funciones que nos permiten manipular nuestra BD.
 
@@ -87,7 +87,7 @@ En cuanto al esquema mongoose tipo menú, este está compuesto por platos, inclu
 *Tenemos `name`, el cual usamos como identificador para distinguir entre diferentes menus, `price` que nos da el precio total del menu calculado gracias a un metodo, `dishes` que es un vector que almacena la totalidad de platos del menu para poder trabajar con ellos de manera mas sencilla, `nutritionalValue` que contiene el valor nutricional total del menu, `listGroup` donde se almacenan los principales grupos alimenticios por los que está conformado el menu*
 
 
-## Implementación
+## 3. Implementación
 
 Para empezar, nuestra base de datos de Mongoose estará compuesta por tres colecciones distintas y codependientes entre sí, que son `Ingredient`, `Dish` y `Menu` que hemos definido a partir de nuestro desarrollo de la anterior práctica grupal. Cada una de estas colecciones tendrá un schema propio.
 
@@ -288,7 +288,7 @@ export const Menu = model<MenuInterface>('Menu', MenuSchema);
 Mediante la última línea creamos la base de datos de `Menu`, pasándole a `model<>` la interfaz que hemos creado para indicarle que es del tipo de la interfaz, el nombre de la misma y su schema. Y ya tendríamos este elemento en MongoDB.
 
 
-## Base de datos MongoDB y Mongoose
+### Base de datos MongoDB y Mongoose
 
 Mongoose es una biblioteca de JavaScript que le permite definir esquemas con datos fuertemente tipados. Una vez que se define un esquema, Mongoose le permite crear un modelo basado en un esquema específico que se asigna a un documento MongoDB a través de la definición del esquema del modelo.
 
@@ -311,9 +311,9 @@ connect(mongodb_url, {
 });
 ```
 
-## API Rest con Express
+### API Rest con Express
 
-### Servidor
+#### Servidor
 
 Mediante nuestro código de server.ts y el app.use(express.json()) y la creación de distintos routers que le indicamos y que veremos a continuación, lo que se envíe de la petición se interpretará como un objeto JSON. El puerto a usar sería el 3000, y en el caso de que este esté ocupado se usaría uno por defecto (process.env.PORT).
 
@@ -350,7 +350,7 @@ Para cada operación se van a implementar operaciones CRUD ("Crear, Leer, Actual
 
 Para la operación de crear o escritura de un ingrediente utilizaremos una petición de tipo `post`, para read o lectura utilizaremos una petición de tipo `get`, para update o modificar utilizaremos una peticion de tipo `patch` y para eliminar un elemento la petición HTTP `delete`. Cualquier otra peticion HTTP que el cliente pida al servidor se denegará ya que estas serán las cuatro únicas operaciones soportadas.
 
-### Router Get
+#### Router Get
 
 La siguiente petición es el get, que se usa para leer un ingrediente, plato o menú. Hay dos formas de ejecutarlo, la primera sería por el nombre del elemento, la segunda por el ID único que le asigna Mongoose.
 
@@ -471,7 +471,7 @@ El código 404 que está en el if, y que nos salta si no se encuentra el objeto.
 
 Y el código 500 que está en el catch que recoge errores inesperados.
 
-### Router Post
+#### Router Post
 
 La petición de tipo post o de crear invoca al método post en el router, se le pasa la ruta por la cual el usuario puede acceder a las peticiones (por ejemplo /ingredients). Se podría acceder con `localhost:(num_port)/ingredients` o una vez desplegado la aplicación Heroku con la url de Heroku y `/ingredients`. Mediante una función callback y sus parámetros `req` (request, donde está todo lo que el usuario envía, en nuestro caso objetos JSON, en post recibe todos los atributos que se van a añadir a la base de datos) y `ref` (response, lo que nosotros enviaremos al usuario de vuelta). Por simplicidad en el código se crea una variable por cada atributo en el `req`.
 
@@ -598,7 +598,7 @@ postRouter.post('/courses', async (req, res) => {
 
 Puntualizar que en esta petición tendremos que calcular mediante métodos almacenados en la carpeta utils (calculateNutriValue, setPrice...)
 
-### Router Patch
+#### Router Patch
 
 La siguiente petición es el patch, que se usa para modificar o actualizar un ingrediente, plato o menú. Hay dos formas de ejecutarlo, la primera sería por el nombre del elemento, la segunda por el ID único que le asigna Mongoose.
 
@@ -828,7 +828,7 @@ En el caso del nombre, primero se convierte a un tipo string para evitar errores
 
 Para el update por el ID se opera mediante el método métodos findByID (devuelve los detalles de la primera ocurrencia de un elemento o NULL en el caso de no encontrarlo).
 
-### Router Delete
+#### Router Delete
 
 Por último, el método delete es muy similar a los anteriores, con la diferencia de que en el caso del nombre, se trabaja con los métodos findOneAndDelete y por el ID se trabaja con findByIDAndDelete.
 
@@ -952,7 +952,7 @@ deleteRouter.delete('/menus/:id', async (req, res) => {
 });
 ```
 
-### Router default
+#### Router default
 
 Las operaciones permitidas serán las cuatro anteriores. Si se intenta realizar alguna operacion fuera de estas se muestra un mensaje de error que es lo que contiene el default, con un mensaje de error (501).
 
@@ -969,9 +969,9 @@ defaultRouter.all('*', (_, res) => {
 });
 ```
 
-## Utilidades / Funciones complementarias
+### Utilidades / Funciones complementarias
 
-### Platos
+#### Platos
 
 Estas funciones son extraídas desde el código original de la práctica número 7 donde ya trabajamos con el proyecto de una Carta Nutricional. Como los requisitos de funcionalidad es el mismo, las funciones que calculan sus datos son similares también.
 
@@ -1048,7 +1048,7 @@ export function setPredominantGroup(ingredientList: IngredientInterface[], quant
 }
 ```
 
-### Menús
+#### Menús
 
 ```ts
 import {DishInterface} from '../../models/Dish';
@@ -1078,7 +1078,7 @@ export function setListGroup(dishList: DishInterface[]): string[] {
 }
 ```
 
-## Base de Datos
+### Base de Datos
 
 Como ya mencionamos anteriormente nuestra práctica hace uso de ```Módulos MongoDB y Mongoose```, pues es la base de datos donde aloja las colecciones de Ingredientes, Platos y Menús creadas por la ```API Rest```. 
 
@@ -1088,12 +1088,12 @@ Por otro lado tambien es capaz de compartir información con un servidor online 
 
 ![Imagen](img/mongoDB-Atlas.PNG)
 
-## Computación en la Red 
+### Computación en la Red 
 
 El objetivo de nuestra API Rest es que sirva contenido a los usuarios que soliciten peticiones a su servicio sin la necesidad de Montar el servidor en su máquina local, para ello usarémos ```Heroku``` un proveedor de servicio de computación en la red que se encargará de ejecutar el servidor API Rest de nuestro proyecto.
 
 ![Imagen](img/heroku.PNG)
-## Peticiones HTTP
+### Peticiones HTTP
 
 Nuestro proyecto al ser un servicio API Rest, trabaja compartiendo información entre clientes y servidor por medio del uso de las ```Peticiones HTTP``` que es un protocolo diseñado para transferir hipertexto en internet. 
 
@@ -1115,7 +1115,7 @@ Thunder Client nos permite realizar peticiones de tipo:
  También podemos definir variables de entorno que nos sirvan como atajos para mejorar la legibilidad de las peticiones y agilizar nuestro trabajo.
 
 
-# Conclusiones
+## Conclusiones
 
 Este proyecto Ha sido el más extenso y complejo de la asignatura, por suerte el trabajo del profesor y de todo el equipo ha permitido minimizar la dificultad de la elaboración del mismo. Enfrentarse al desarollo de este también ha resultado en una experiencia muy valiosa para aprender a desenvolvernos con APIs ya que es la primera vez que las trabajamos y ahora tenemos las bases para seguir progresando en el desarrollo de estas de cara al mundo laboral.
 
