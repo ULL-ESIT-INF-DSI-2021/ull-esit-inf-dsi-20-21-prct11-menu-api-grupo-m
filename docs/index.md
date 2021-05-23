@@ -299,6 +299,10 @@ Mediante la última línea creamos la base de datos de `Menu`, pasándole a `mod
 
 ## Base de datos MongoDB y Mongoose
 
+Mongoose es una biblioteca de JavaScript que le permite definir esquemas con datos fuertemente tipados. Una vez que se define un esquema, Mongoose le permite crear un modelo basado en un esquema específico que se asigna a un documento MongoDB a través de la definición del esquema del modelo.
+
+Una vez que se hayan definido esquemas y modelos, Mongoose contiene muchas funciones diferentes que le permiten validar, guardar, eliminar y consultar sus datos utilizando las funciones comunes de MongoDB.
+
 ```ts
 import {connect} from 'mongoose';
 
@@ -320,11 +324,9 @@ connect(mongodb_url, {
 
 ### Servidor
 
-Los routers pretenden establecer una conexión entre el cliente y el servidor, teniendo este último la base de datos que nos va a resolver los diferentes elementos del menú, ingredientes y platos. Se va a intentar también procesar  las peticiones del cliente, que pueden ser de tipo lectura, escritura, eliminación o modificación. Para esto vamos a utilizar peticiones HTTP para cada operación.
+Mediante nuestro código de server.ts y el app.use(express.json()) y la creación de distintos routers que le indicamos y que veremos a continuación, lo que se envíe de la petición se interpretará como un objeto JSON. El puerto a usar sería el 3000, y en el caso de que este esté ocupado se usaría uno por defecto (process.env.PORT).
 
-Para cada operación se van a implementar operaciones CRUD ("Crear, Leer, Actualizar y Borrar" o "Create, Read, Update and Delete"), y para cada una se usará una una petición HTTP.
-
-Para la operación de crear o escritura de un ingrediente utilizaremos una petición de tipo `post`, para read o lectura utilizaremos una petición de tipo `get`, para update o modificar utilizaremos una peticion de tipo `patch` y para eliminar un elemento la petición HTTP `delete`. Cualquier otra peticion HTTP que el cliente pida al servidor se denegará ya que estas serán las cuatro únicas operaciones soportadas.
+Por último se muestra un mensaje mientras hacemos un app.listen al puerto que indica que el puerto está abierto en escucha para las peticiones que pueda hacer el usuario.
 
 
 ```ts
@@ -350,6 +352,12 @@ app.listen(port, () => {
   console.log(`Server is up on port ${port}`);
 });
 ```
+
+Los routers pretenden establecer una conexión entre el cliente y el servidor, teniendo este último la base de datos que nos va a resolver los diferentes elementos del menú, ingredientes y platos. Se va a intentar también procesar  las peticiones del cliente, que pueden ser de tipo lectura, escritura, eliminación o modificación. Para esto vamos a utilizar peticiones HTTP para cada operación.
+
+Para cada operación se van a implementar operaciones CRUD ("Crear, Leer, Actualizar y Borrar" o "Create, Read, Update and Delete"), y para cada una se usará una una petición HTTP.
+
+Para la operación de crear o escritura de un ingrediente utilizaremos una petición de tipo `post`, para read o lectura utilizaremos una petición de tipo `get`, para update o modificar utilizaremos una peticion de tipo `patch` y para eliminar un elemento la petición HTTP `delete`. Cualquier otra peticion HTTP que el cliente pida al servidor se denegará ya que estas serán las cuatro únicas operaciones soportadas.
 
 ### Router Get
 
@@ -597,7 +605,17 @@ postRouter.post('/courses', async (req, res) => {
 
 ```
 
+Puntualizar que en esta petición tendremos que calcular mediante métodos almacenados en la carpeta utils (calculateNutriValue, setPrice...)
+
 ### Router Patch
+
+La siguiente petición es el patch, que se usa para modificar o actualizar un ingrediente, plato o menú. Hay dos formas de ejecutarlo, la primera sería por el nombre del elemento, la segunda por el ID único que le asigna Mongoose.
+
+Para modificarlos los cambios deben ser añadidos a un objeto JSON que sería el body de la consulta/petición. Se pone la ruta de acceso y se crea la función callback.
+
+El primer parámetro será el nombre o el identificador, que es el campo sobre el que se desea realizar la operación, luego vendrá el body (lo que se desea cambiar o el nuevo contenido) y seguidamente una serie de opciones.
+
+Si se realiza el update de manera correcta se envía el elemento actualizado y si no como previamente, se mostrarán dos mensajes de error (440 y 500).
 
 ```ts
 import * as express from 'express';
@@ -815,7 +833,13 @@ patchRouter.patch('./menus:id', async (req, res) => {
 });
 ```
 
+En el caso del nombre, primero se convierte a un tipo string para evitar errores. Mediante los métodos findOne (devuelve los detalles de la primera ocurrencia de un elemento o NULL en el caso de no encontrarlo) y find (devuelve todas las ocurrencias del elemento y los almacena en un array, que en el caso de no haber ocurrencias estará vacío, es decir, será de tamaño cero y se devuelve un error).
+
+Para el update por el ID se opera mediante el método métodos findByID (devuelve los detalles de la primera ocurrencia de un elemento o NULL en el caso de no encontrarlo).
+
 ### Router Delete
+
+Por último, el método delete es muy similar a los anteriores, con la diferencia de que en el caso del nombre, se trabaja con los métodos findOneAndDelete y por el ID se trabaja con findByIDAndDelete.
 
 ```ts
 import * as express from 'express';
@@ -939,6 +963,8 @@ deleteRouter.delete('/menus/:id', async (req, res) => {
 
 ### Router default
 
+Las operaciones permitidas serán las cuatro anteriores. Si se intenta realizar alguna operacion fuera de estas se muestra un mensaje de error que es lo que contiene el default, con un mensaje de error (501).
+
 ```ts
 import * as express from 'express';
 
@@ -955,6 +981,7 @@ defaultRouter.all('*', (_, res) => {
 ## Utilidades / Funciones complementarias
 
 ### Platos
+
 
 ```ts
 import {IngredientInterface} from '../../models/Ingredient';
