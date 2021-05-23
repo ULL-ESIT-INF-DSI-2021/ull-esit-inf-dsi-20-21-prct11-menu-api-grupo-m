@@ -1,1 +1,11 @@
+title: Informes - DSI
+Description: >- 
+        Página diseñada para desarrollar informes para las prácticas de Desarrollo de Sistemas Informáticos -
+        Grado en Ingeniería Informática - ULL
+baseurl: "/ull-esit-inf-dsi-20-21-prct11-menu-api-grupo-m"
+url: "https://ull-esit-inf-dsi-2021.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+
+#build settings
 theme: jekyll-theme-slate
+plugins:
+  - jekyll-feed
