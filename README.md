@@ -24,7 +24,7 @@ En este proyecto grupal el objetivo es que implementar una API Rest, haciendo us
 
 Los requisitos que se nos exigen en la práctica abarcan la existencia de esquemas y modelos para Ingrediente, Plato y Menú. Estos esquemas presentarán una relación many-to-many de los elementos contenidos ya que Menus hará relaciona varios platos y a su vez, platos a alimentos.
 
-Dicha API debe alojar la colección de elementos creados en un servidor para Base de Datos en nuestro caso MongoDB y debe estar alojada en la nube (Heroku).
+Dicha API debe alojar la colección de elementos creados en un servidor para Base de Datos en nuestro caso MongoDB y debe estar alojada en la nube (Heroku y Mongo Atlas).
 
 | Github Pages | 
 | ------------ |
